@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			body {
+				margin: 0px;
+				padding: 0px;
+			}
+			#canvasImg {
+				border: 1px solid #9C9898;
+			}
+			#resize
+			{
+				width:600px;
+				height: 600px;
+				border-style: solid;
+			}
+
+		</style>
+		<link href="css/jquery-ui-1.10.2.custom.css" rel="stylesheet">
+
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+		<script src="js/jcanvas.min.js"></script>
+		<script src="js/canvas.js"></script>		
+
+	</head>
+	<body>
+		<div id="explorador">
+			<img id="yao" src="meme.jpg" style= "width: 50px">
+			<img id="fuckencio" src="fuckencio.jpg" style= "width: 50px">
+		</div>
+
+		<div id="resize"><canvas id="myCanvas" width="600" height="600"></canvas></div>
+		<input id= "texto"></input>
+		<button id= "dibujarTexto">dibujarTexto</button>
+		<button id="btnGen">generar</button>
+		<img id="canvasImg" alt="">
+
+	</body>
+</html>
