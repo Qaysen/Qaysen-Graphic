@@ -17,7 +17,6 @@ function verificarLogin()
         oauth:true
     });   
 
-
     FB.getLoginStatus(function(response) {
         if (response.authResponse) {
             if (response.status === "unknown") { 
