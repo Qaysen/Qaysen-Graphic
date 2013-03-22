@@ -203,7 +203,8 @@ $(function() {
                 document.getElementById('canvasImg').src = dataURL;
 
                 $.post("save.php", {data: dataURL}, function(imagen) {
-                    $('#publicarFB').val(imagen);
+                    console.log(imagen);
+                    $('#publicarFB').html(imagen);
                 });
             });
 

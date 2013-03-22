@@ -30,7 +30,7 @@ function compartir()
 
         //Compartir imagen en el muro
         var body = 'Mi primera iamgen subida';
-        var imagen = 'http://edwinpgm.com/' + $('#publicarFB').val();
+        var imagen = 'http://edwinpgm.com/' + document.getElementById('publicarFB').innerHTML;
         FB.api('/photos', 'post', {
             message:body,
             url:imagen        
