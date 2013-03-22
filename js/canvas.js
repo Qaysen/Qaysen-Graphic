@@ -1,9 +1,4 @@
 $(function() {
-
-            //Datos iniciales del span8
-            //ancho = $('.span8').width();
-            //$('#myCanvas').width(ancho);
-
             //Lista de los objetos que están actualmente en canvas
             var objetos = [];
             numObjetos = 0;
@@ -23,87 +18,158 @@ $(function() {
             //redimensionado termina, al suceder esto el canvas obtiene
             //el tamaño de su contenedor y posteriormente se redibuja
             $("#resize").resizable({ 
-                stop: function(event, ui) {
+                resize: function(event, ui) {
                     $("#myCanvas", this).each(function() { 
                         $(this).attr({ width: ui.size.width, height: ui.size.height });
-                        redibujarCanvas();                    
+                        redibujarCanvas();                       
                     });
                 }
             });
 
             //Se agrega un objeto a la lista de objetos, especificando
             //su nombre y su tipo
-            function agregarObjeto (tip,cont) {
-                objetos.push({
-                    contenido: cont,
-                    tipo: tip
-                });
+            function agregarObjeto (datos) {
+                objetos.push(datos);
             }
 
-            $(".subirCapa").on("click",function(){
-                indice = $(this).parent().attr("indice");
-            });
-
             //Esto sucede al dar click en una imagen del explorador
-            $("#explorador img").on("click", function(){
+            $("#photobar img").on("click", function(){
                 //Se obtienen el numero de capas que se encuentran en el
                 //grupo imagenes para posteriormente indicar que el index
                 //de la imagen nueva sea igual al numero de capas, es decir
                 //se ubicará por encima de las demas
-                console.log(ancho);
-
                 capasimagen = canvas.getLayerGroup("imagenes").length;
 
                 id = objetos.length;
                 var nombre = $(this).attr("id");
 
-                agregarObjeto("imagen",nombre);
-
                 canvas.addLayer({
-                    draggable: true,
+                    draggable:true,
                     method: "drawImage",
                     index: capasimagen,
                     group: "imagenes",
                     name: id,
-                    width: ancho, //Agregamos tamaños fijos para las imagenes que salen en el canvas
-                    fromCenter: false,
+                    data:{
+                        contenido: nombre
+                    },
                     source: $(this).attr("src"),
-                    x: 0, y: 0,
+                    x: 150, y: 150,
                     load: function() {
                         $(this).drawLayer();
                     }
-                });
-
-                capas = canvas.getLayers();
-
-                console.log(capas);
-
-                redibujarCanvas();  
+                })
+                console.log(canvas.getLayers());
+                
+                actualizarLista();
+                redibujarCanvas();
             });
             
+            function actualizarLista() {
+
+                var filas = "";
+                capas = canvas.getLayers();
+
+                for(i=capas.length; i>0;i--)
+                {
+                    filas += "<tr><td>";
+                    filas += capas.length - i + 1;
+                    filas += "</td><td>";
+                    contenido = capas[i-1].data.contenido;
+                    filas += contenido.substring(0,9);
+                    if(contenido.length >10)
+                    {
+                        filas += "...";     
+                    }
+                    
+                    filas += '</td><td><button class="btn-danger">Eliminar</button></td><td><a class="subir-capa"><i class="icon-chevron-up"></i></a><a class="bajar-capa"><i class="icon-chevron-down"></i></a></td></tr>';
+                }
+
+                $(".lista-objetos tbody").html(filas);
+                
+                $(".lista-objetos .btn-danger").on("click", function(){
+                    fila = $(this).parents("tr:first");
+                    indice = capas.length - fila.index() - 1;
+
+                    console.log(indice);
+                    canvas.removeLayer(indice);
+                    
+                    actualizarLista();
+                    redibujarCanvas();
+
+                });
+
+                $(".subir-capa").on("click",function(){
+                    fila = $(this).parents("tr:first");
+                    indice = capas.length - fila.index() - 1;                
+                    
+                    capa = canvas.getLayer(indice);
+                    capasimagen = canvas.getLayerGroup("imagenes").length;
+                    console.log(indice);
+                    if(indice<capasimagen || (indice < objetos.length && indice != capasimagen))
+                    { 
+                        console.log("sube!");
+                        console.log(canvas.getLayer(indice).index);
+                        canvas.setLayer(indice,
+                        {
+                            index: indice + 1
+                        });
+                        console.log(canvas.getLayer(indice).index);
+                        canvas.clearCanvas();
+                        actualizarLista();
+                        
+                    }
+                });
+
+                $(".bajar-capa").on("click",function(){
+                    fila = $(this).parents("tr:first");
+                    indice = capas.length - fila.index() - 1;
+                    
+                    capa = canvas.getLayer(indice);
+                    capasimagen = canvas.getLayerGroup("imagenes").length;
+
+                    if(indice>capasimagen || (indice >0 && indice != capasimagen))
+                    {  
+                        canvas.setLayer(indice,
+                        {
+                            index: indice - 1
+                        });
+                        actualizarLista();
+                        redibujarCanvas();
+                    }
+                    
+                });
+
+            }
             //De la lista se obtendrá el id del boton que fue
             //presionado y eliminará esta capa
-            $("#lista button").on("click", function(){
-                canvas.removeLayer($(this).attr("value"));
+
+            $(".lista-objetos .btn-danger").on("click", function(){
+                console.log("asd");
+                canvas.removeLayer($(this).parents("tr:first-of-type").index());
+                $(this).parent().remove();
                 redibujarCanvas();
             });
 
             $("#dibujarTexto").on("click",function() {
                 text = $("#texto").val();
 
-                agregarObjeto(text.substring(0,10),"texto");
+                id = objetos.length;
 
+                console.log(objetos);
                 capas = canvas.getLayers().length;
                 
                 canvas.addLayer({
                      draggable: true,
-                     name: text,
+                     name: id,
                      index:capas,
                      group: "texto",
                      method: "drawText",
                      fillStyle: "#9cf",
                      strokeStyle: "#25a",
                      strokeWidth: 2,
+                     data:{
+                        contenido: text
+                     },
                      x: 20, y: 20,
                      fromCenter: false,
                      font: "36pt Verdana, sans-serif",
@@ -111,6 +177,7 @@ $(function() {
                      background: "#000"
                  });
 
+                actualizarLista();
                 redibujarCanvas();
              })
 

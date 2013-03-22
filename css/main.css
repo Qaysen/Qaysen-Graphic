@@ -58,9 +58,18 @@ button {
 	height: 20px;
 }
 
-a.subir-capa, a.bajar-capa {
-	cursor: pointer;
+#myCanvas {
+	overflow: hidden;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background: #fff;
 }
+
+
 
 
 /* Fotos */
