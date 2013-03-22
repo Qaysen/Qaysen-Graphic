@@ -209,6 +209,9 @@ $(function() {
                     success: function(data) {
                         console.log(data);
                         $('#publicarFB').html(data);
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
                 });
 
