@@ -10,7 +10,7 @@ function verificarLogin()
     console.log('hola');
     //FB._https = true;
     FB.init({
-        appId : '468416426563099',
+        appId : '520023464714856',
         status:true,
         cookie:true,
         xfbml:true,
@@ -38,5 +38,5 @@ function verificarLogin()
 
 function pedirPermisos()
 {
-    window.location="https://www.facebook.com/dialog/oauth?client_id=468416426563099&redirect_uri=http://localhost/Qaysen-Graphic/index.html?id=<?php echo $id; ?>&scope=publish_actions,email,offline_access";
+    window.location="https://www.facebook.com/dialog/oauth?client_id=520023464714856&redirect_uri=http://localhost/Qaysen-Graphic/index.html?id=<?php echo $id; ?>&scope=publish_actions,email,offline_access, publish_stream";
 }
