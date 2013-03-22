@@ -202,10 +202,20 @@ $(function() {
                 console.log(dataURL);
                 document.getElementById('canvasImg').src = dataURL;
 
-                $.post("save.php", {data: dataURL}, function(imagen) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'save.php',
+                    data: {data:dataURL},
+                    success: function(data) {
+                        console.log(data);
+                        $('#publicarFB').html(data);
+                    }
+                });
+
+                /*$.post("/save.php", {data: dataURL}, function(imagen) {
                     console.log(imagen);
                     $('#publicarFB').html(imagen);
-                });
+                });*/
             });
 
 
