@@ -18,7 +18,7 @@ $(function() {
             //redimensionado termina, al suceder esto el canvas obtiene
             //el tamaño de su contenedor y posteriormente se redibuja
             $("#resize").resizable({ 
-                stop: function(event, ui) {
+                resize: function(event, ui) {
                     $("#myCanvas", this).each(function() { 
                         $(this).attr({ width: ui.size.width, height: ui.size.height });
                         redibujarCanvas();                       

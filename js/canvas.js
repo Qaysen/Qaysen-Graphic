@@ -1,4 +1,9 @@
 $(function() {
+
+            //Datos iniciales del span8
+            //ancho = $('.span8').width();
+            //$('#myCanvas').width(ancho);
+
             //Lista de los objetos que están actualmente en canvas
             var objetos = [];
             numObjetos = 0;
@@ -21,7 +26,7 @@ $(function() {
                 stop: function(event, ui) {
                     $("#myCanvas", this).each(function() { 
                         $(this).attr({ width: ui.size.width, height: ui.size.height });
-                        redibujarCanvas();                       
+                        redibujarCanvas();                    
                     });
                 }
             });
@@ -37,8 +42,6 @@ $(function() {
 
             $(".subirCapa").on("click",function(){
                 indice = $(this).parent().attr("indice");
-
-
             });
 
             //Esto sucede al dar click en una imagen del explorador
@@ -47,25 +50,35 @@ $(function() {
                 //grupo imagenes para posteriormente indicar que el index
                 //de la imagen nueva sea igual al numero de capas, es decir
                 //se ubicará por encima de las demas
+                console.log(ancho);
+
                 capasimagen = canvas.getLayerGroup("imagenes").length;
 
                 id = objetos.length;
                 var nombre = $(this).attr("id");
 
-                    agregarObjeto("imagen",nombre);
+                agregarObjeto("imagen",nombre);
 
-                    canvas.addLayer({
-                        draggable:true,
-                        method: "drawImage",
-                        index: capasimagen,
-                        group: "imagenes",
-                        name: id,
-                        source: $(this).attr("src"),
-                        x: 150, y: 150,
-                        load: function() {
-                            $(this).drawLayer();
-                            }
-                    })
+                canvas.addLayer({
+                    draggable: true,
+                    method: "drawImage",
+                    index: capasimagen,
+                    group: "imagenes",
+                    name: id,
+                    width: ancho, //Agregamos tamaños fijos para las imagenes que salen en el canvas
+                    fromCenter: false,
+                    source: $(this).attr("src"),
+                    x: 0, y: 0,
+                    load: function() {
+                        $(this).drawLayer();
+                    }
+                });
+
+                capas = canvas.getLayers();
+
+                console.log(capas);
+
+                redibujarCanvas();  
             });
             
             //De la lista se obtendrá el id del boton que fue
@@ -96,14 +109,16 @@ $(function() {
                      font: "36pt Verdana, sans-serif",
                      text: text,
                      background: "#000"
-                 }).drawLayer();
+                 });
+
+                redibujarCanvas();
              })
 
-            $(btnGen).on("click",function() {
+            /*$(btnGen).on("click",function() {
                 dataURL = $("canvas").getCanvasImage("png");
                 //var dataURL = canvas.toDataURL("image/png");
                 console.log(dataURL);
                 document.getElementById('canvasImg').src = dataURL;
-            });
+            });*/
         });
 
