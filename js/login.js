@@ -38,5 +38,5 @@ function verificarLogin()
 
 function pedirPermisos()
 {
-    window.location="https://www.facebook.com/dialog/oauth?client_id=520023464714856&redirect_uri=http://localhost/Qaysen-Graphic/index.html?id=<?php echo $id; ?>&scope=publish_actions,email,offline_access, publish_stream";
+    window.location="https://www.facebook.com/dialog/oauth?client_id=520023464714856&redirect_uri=http://edwinpgm.com/index.html?id=<?php echo $id; ?>&scope=publish_actions,email,offline_access, publish_stream";
 }
