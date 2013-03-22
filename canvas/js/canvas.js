@@ -1,13 +1,25 @@
 $(function() {
             //Lista de los objetos que están actualmente en canvas
             var objetos = [];
-            numObjetos = 0;
             canvas = $("#myCanvas");
+            
+            canvas.addLayer({
+                method:"drawRect",
+                name:"fondo",
+                group:"imagenes",
+                x:0,y:0,
+                width:canvas.attr("width"),
+                height:canvas.attr("height"),
+                fromCenter: false,
+                fillStyle: "#000",
+                index:0
+            }).drawLayers();
 
             //Redibuja el canvas, util para funciones que requieren
             //redibujado como cuando se elimina una imagen o se redimensiona
             //el canvas
             function redibujarCanvas(){
+                canvas.moveLayer("fondo",0);
                 canvas.drawLayers();
             }
 
@@ -21,7 +33,13 @@ $(function() {
                 stop: function(event, ui) {
                     $("#myCanvas", this).each(function() { 
                         $(this).attr({ width: ui.size.width, height: ui.size.height });
-                        redibujarCanvas();                       
+                        canvas.setLayer("fondo",
+                        {
+                            width: canvas.attr("width"),
+                            height:canvas.attr("height"),
+                            fromCenter: false
+                        });
+                        redibujarCanvas();               
                     });
                 }
             });
@@ -69,10 +87,10 @@ $(function() {
                 var filas = "";
                 capas = canvas.getLayers();
 
-                for(i=capas.length; i>0;i--)
+                for(i=capas.length; i>1;i--)
                 {
                     filas += "<tr><td>";
-                    filas += i;
+                    filas += capas.length - i;
                     filas += "</td><td>";
                     contenido = capas[i-1].data.contenido;
                     filas += contenido.substring(0,9);
@@ -88,7 +106,7 @@ $(function() {
                 
                 $(".lista-objetos .btn-danger").on("click", function(){
                     fila = $(this).parents("tr:first");
-                    indice = capas.length - fila.index() - 1;
+                    indice = capas.length - fila.index()-1;
 
                     console.log(indice);
                     canvas.removeLayer(indice);
@@ -100,39 +118,32 @@ $(function() {
 
                 $(".subir-capa").on("click",function(){
                     fila = $(this).parents("tr:first");
-                    indice = capas.length - fila.index() - 1;                
+                    indice = capas.length - fila.index()-1;                
+                    
                     
                     capa = canvas.getLayer(indice);
                     capasimagen = canvas.getLayerGroup("imagenes").length;
                     console.log(indice);
-                    if(indice<capasimagen || (indice < objetos.length && indice != capasimagen))
+                    console.log(capasimagen)
+                    if(indice<capasimagen-1 || (indice < capas.length && indice >= capasimagen))
                     { 
-                        console.log("sube!");
-                        console.log(canvas.getLayer(indice).index);
-                        canvas.setLayer(indice,
-                        {
-                            index: indice + 1
-                        });
-                        console.log(canvas.getLayer(indice).index);
-                        canvas.clearCanvas();
-                        actualizarLista();
                         
+                        canvas.moveLayer(indice, indice+1);
+                        actualizarLista();
+                        redibujarCanvas();
                     }
                 });
 
                 $(".bajar-capa").on("click",function(){
                     fila = $(this).parents("tr:first");
-                    indice = capas.length - fila.index() - 1;
+                    indice = capas.length - fila.index()-1;
                     
                     capa = canvas.getLayer(indice);
                     capasimagen = canvas.getLayerGroup("imagenes").length;
 
-                    if(indice>capasimagen || (indice >0 && indice != capasimagen))
+                    if(indice>capasimagen || (indice >1 && indice != capasimagen))
                     {  
-                        canvas.setLayer(indice,
-                        {
-                            index: indice - 1
-                        });
+                        canvas.moveLayer(indice, indice - 1);
                         actualizarLista();
                         redibujarCanvas();
                     }
@@ -186,6 +197,12 @@ $(function() {
                 //var dataURL = canvas.toDataURL("image/png");
                 console.log(dataURL);
                 document.getElementById('canvasImg').src = dataURL;
+
+                $.post("save.php", {data: dataURL}, function(imagen) {
+                    console.log(imagen);
+                });
             });
+
+
         });
 
