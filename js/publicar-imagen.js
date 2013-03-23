@@ -20,7 +20,7 @@ function publicarImagen()
 
       //Compartir imagen en el muro
       var body = 'Mi primera iamgen subida';
-      var imagen = 'http://3.bp.blogspot.com/-X0YlNcwvF2U/UMjNtzNy__I/AAAAAAAAXJ0/HH6N-sUJVGA/s1600/Im%C3%A1genes+Preciosas+Navide%C3%B1as+con+Fotos+de+Winnie+Pooh+para+Facebook.jpg';
+      var imagen = 'http://ver-novelas.com/' + document.getElementById('publicarFB').innerHTML;
       FB.api('/photos', 'post', {
           message:body,
           url:imagen        
