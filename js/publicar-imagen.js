@@ -20,7 +20,7 @@ function publicarImagen()
 
       //Compartir imagen en el muro
       var body = 'Mi primera iamgen subida';
-      var imagen = 'http://ver-novelas.com/' + document.getElementById('publicarFB').innerHTML;
+      var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
       FB.api('/photos', 'post', {
           message:body,
           url:imagen        
@@ -33,6 +33,7 @@ function publicarImagen()
           }
 
       });
+      console.log(imagen);
     }
     else if (response.status === 'not_authorized') 
     {
