@@ -22,6 +22,7 @@ function publicarImagen()
       descargar();
       var body = 'Mi primera iamgen subida';
       var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
+      //var imagen = 'http://localhost/Qaysen-Graphic/' + document.getElementById('publicarFB').innerHTML;
       FB.api('/photos', 'post', {
           message:body,
           url:imagen        
@@ -57,7 +58,7 @@ function descargar()
 
     $.ajax({
         type: 'POST',
-        url: 'save.php',
+        url: '/save.php',
         data: {data:dataURL},
         success: function(data) {
             console.log(data);
