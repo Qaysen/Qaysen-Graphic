@@ -75,6 +75,12 @@ button {
 }
 
 
+/* Explorador */
+.explorador ul li {
+	display: inline-block;
+}
+
+
 /* Fotos */
 
 .flickr_photobar{

@@ -188,6 +188,7 @@ $(function() {
     var dataURL = '';
     var imagenActual;
 
+
     $(".genImagen").on("click",function(){
         var temp_dataURL = canvas.getCanvasImage("png");
         var id = $(this).attr("id");
@@ -224,6 +225,7 @@ $(function() {
         }
     });
 
+
     function crearImagen(url,boton,callback) {
         $.ajax({
             type: 'POST',
@@ -237,6 +239,7 @@ $(function() {
             }
         });
     }
+
 
 });
 
