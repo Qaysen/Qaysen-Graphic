@@ -1,5 +1,5 @@
 <?
-include('conexion.php'); 
+include('../conexion.php'); 
 
 // Validar que no hay campos vaciones,sino redireccionar ..
 if(($_POST['nick'] == ' ') or ($_POST['pass'] == ' ') or ($_POST['pass1'] == ' ') )

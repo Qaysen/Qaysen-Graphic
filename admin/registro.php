@@ -1,5 +1,5 @@
 <?php 
-include('conexion.php');
+include('../conexion.php');
 ?>
 <form action="registrar.php" method="POST">
 	Nick: <input type="text" name="nick" size="30"><br>

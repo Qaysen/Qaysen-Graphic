@@ -3,12 +3,12 @@
 <head>
 	<title>Logearse</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">		
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">		
 </head>
 <body>
 <?
-include('conexion.php');
+include('../conexion.php');
 if(!isset($_SESSION['usuario']) ) // Existencia de la Sesión..
 { ?>
 	<br />
@@ -37,8 +37,8 @@ if(!isset($_SESSION['usuario']) ) // Existencia de la Sesión..
 	//Si ya se encuentra logeado ..
 	echo '<h3>Bienvenido '.$_SESSION['usuario'].'</h3>';
 	echo '<hr>';
-	echo '<a href=admin.php><button class="btn btn-primary"> Ir al panel de Administración </button></a>'; 
-	echo '<a href=logout.php><button class="btn btn-danger"> Salir(Desconectarse)</button> </a>'; 
+	echo '<a href="admin.php"><button class="btn btn-primary"> Ir al panel de Administración </button></a>'; 
+	echo '<a href="logout.php"><button class="btn btn-danger"> Salir(Desconectarse)</button> </a>'; 
 	echo '<hr>';
 }
 ?>	
