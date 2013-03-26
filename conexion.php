@@ -1,7 +1,7 @@
 <?
 $dbhost="localhost"; 
 $dbuser="root"; 
-$dbpass="123"; 
+$dbpass="melquiades"; 
 $db="memes";
 
 $dbc=mysql_connect("$dbhost","$dbuser","$dbpass");
