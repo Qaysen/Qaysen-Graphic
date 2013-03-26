@@ -67,32 +67,49 @@ function publicarImagen(rutaImagen)
 
 };
 
-function publicarMuro(imagen)
+function publicarMuro(fondo, imagen)
 {
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
-    FB.api('/photos', 'post', {
+  $.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},
+    function () {
+      FB.api('/photos', 'post', {
         message:mensaje,
         url:imagen        
-    }, function(response){
+      }, function(response){
 
+          if (!response || response.error) {
+            console.log(response.error);
+          } else {
+            console.log(response.id);
+            $.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
+          }
+
+      });  
+    }
+}
+
+function CompartirEnMiMuro(fondo,imagen) {
+
+  nuevaImagen(fondo,imagen)
+  $.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},
+
+  function (respuesta) {
+    var obj = {
+      method: 'feed',
+      link: 'http://localhost/Qaysen-Graphic/vista.php?id='+respuesta,
+      picture: 'http://localhost/Qaysen-Graphic/img/'+imagen,
+      name: fondo.nombre,
+      caption: 'Imagen creada por ... ',
+      description: 'Herramienta que permite crear tus propios memes'
+    };
+
+    FB.ui(obj,function(response) {
         if (!response || response.error) {
           console.log(response.error);
         } else {
           console.log(response.id);
-        }
-
-    });
-}
-
-function CompartirEnMiMuro() {
-	var obj = {
-		method: 'feed',
-		link: 'http://localhost/Qaysen-Graphic/vista.php?id=',
-		picture: 'http://www.veomemes.com/wp-content/uploads/2012/08/agua-en-el-oido.jpg',
-		name: 'Qaysen-Graphic',
-		caption: 'La ultima  ',
-		description: 'Herramienta que permite crear tus propios memes'
-	};
-
-	FB.ui(obj);
+          $.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
+    });  
+  })
+	
 }

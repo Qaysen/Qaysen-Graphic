@@ -28,10 +28,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `imagenv001` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(60) NOT NULL,
   `categoria` varchar(50) NOT NULL,
   `ruta` varchar(50) NOT NULL,
   `thumbs` varchar(70) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `imagenesCreadas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idimagen` int(11) NOT NULL,
+  `ruta` varchar(70) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
