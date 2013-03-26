@@ -1,10 +1,10 @@
 <?
 $dbhost="localhost"; 
 $dbuser="root"; 
-$dbpass="123456"; 
-$db="meme";
+$dbpass="123"; 
+$db="memes";
 
-mysql_connect("$dbhost","$dbuser","$dbpass");
+$dbc=mysql_connect("$dbhost","$dbuser","$dbpass");
 mysql_select_db("$db"); 
 
 //Comenzar la sesión
