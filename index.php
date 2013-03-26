@@ -122,10 +122,10 @@
                 <ul>
                 
                     <?php 
-                            $dbc=mysql_connect('localhost','root','123');
+                            $dbc=mysql_connect('localhost','root','melquiades');
                             mysql_select_db('imagen');
                             $query="SELECT * FROM imagenv001 ORDER BY nombre DESC";
-                            if($r=mysql_db_query("imagen",$query,$dbc)){
+                            if($r=mysql_query($query,$dbc)){
 
                                 while($row=mysql_fetch_array($r)){
     

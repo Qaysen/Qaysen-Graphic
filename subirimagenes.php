@@ -1,7 +1,7 @@
 <?php 
 
 	include("resize.php");
-	$conexion=mysql_connect("localhost","root","123") or die("problemas de conexion");
+	$conexion=mysql_connect("localhost","root","melquiades") or die("problemas de conexion");
 	mysql_select_db("imagen",$conexion) or die("no existe la base de datos.");
 	$rutaEnServidor='img';
 	$rutaTemporal=$_FILES['imagen']['tmp_name'];

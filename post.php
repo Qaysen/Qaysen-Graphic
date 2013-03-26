@@ -80,7 +80,7 @@
                 </div>
                 <div class="span8 canvas">
                     <div id="resize">
-                        <canvas id="myCanvas" width="600" height="600"></canvas>
+                        <img src="">
                     </div>
                 </div>
             </div>
