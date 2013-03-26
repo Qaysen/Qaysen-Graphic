@@ -69,7 +69,10 @@ button {
 	background: #fff;
 }
 
-
+/* Listas de objetos */
+.bajar-capa, .subir-capa {
+	cursor: pointer;
+}
 
 
 /* Fotos */
