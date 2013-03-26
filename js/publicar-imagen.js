@@ -18,12 +18,49 @@ function publicarImagen()
          console.log('Estas registrado');
       });
 
+      function descargar() 
+      {
+          dataURL = $("canvas").getCanvasImage("png");
+          //var dataURL = canvas.toDataURL("image/png");
+          console.log(dataURL);
+          //document.getElementById('canvasImg').src = dataURL;
+
+          $.ajax({
+              type: 'POST',
+              url: '/qaysen/save.php',
+              data: {data:dataURL},
+              success: function(data) {
+                  console.log(data);
+                  $('#publicarFB').html(data);
+                  var body = 'Mi primera iamgen subida';
+                  var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
+                  FB.api('/photos', 'post', {
+                      message:body,
+                      url:imagen        
+                  }, function(response){
+
+                      if (!response || response.error) {
+                          alert('Error occured' + response.error);
+                      } else {
+                          alert('Post ID: ' + response.id);
+                      }
+
+                  });
+                  console.log(imagen);
+              },
+              error: function(data) {
+                  console.log(data);
+              }
+          });
+      }
+
       //Compartir imagen en el muro
       descargar();
-      var body = 'Mi primera iamgen subida';
-      var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
+      //var body = 'Mi primera iamgen subida';
+      //var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
       //var imagen = 'http://localhost/Qaysen-Graphic/' + document.getElementById('publicarFB').innerHTML;
-      FB.api('/photos', 'post', {
+      
+      /*FB.api('/photos', 'post', {
           message:body,
           url:imagen        
       }, function(response){
@@ -35,7 +72,7 @@ function publicarImagen()
           }
 
       });
-      console.log(imagen);
+      console.log(imagen);*/
     }
     else if (response.status === 'not_authorized') 
     {
@@ -48,27 +85,6 @@ function publicarImagen()
   });
 
 };
-
-function descargar() 
-{
-    dataURL = $("canvas").getCanvasImage("png");
-    //var dataURL = canvas.toDataURL("image/png");
-    console.log(dataURL);
-    //document.getElementById('canvasImg').src = dataURL;
-
-    $.ajax({
-        type: 'POST',
-        url: '/qaysen/save.php',
-        data: {data:dataURL},
-        success: function(data) {
-            console.log(data);
-            $('#publicarFB').html(data);
-        },
-        error: function(data) {
-            console.log(data);
-        }
-    });
-}
 
 (function(d, debug){
    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
