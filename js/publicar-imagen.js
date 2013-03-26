@@ -58,7 +58,7 @@ function descargar()
 
     $.ajax({
         type: 'POST',
-        url: '/save.php',
+        url: '/qaysen/save.php',
         data: {data:dataURL},
         success: function(data) {
             console.log(data);
