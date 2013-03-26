@@ -4,29 +4,30 @@ function inicio(){
   $("#login").on('click',login);
 }
 
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '520023464714856', // App ID
-      channelUrl : '//localhost/Qaysen-Graphic/', // Channel File
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
-    
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            // connected
-        } else if (response.status === 'not_authorized') {
-            // not_authorized
-            login();
-        } else {
-            // not_logged_in
-            login();
-        }
-    });
-};
-
 function login() {
+
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '520023464714856', // App ID
+          channelUrl : '//localhost/Qaysen-Graphic/', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+        
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                // connected
+            } else if (response.status === 'not_authorized') {
+                // not_authorized
+                login();
+            } else {
+                // not_logged_in
+                login();
+            }
+        });
+    };
+
     FB.login(function(response) {
         if (response.authResponse) {
             // connected

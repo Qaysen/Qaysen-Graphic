@@ -1,29 +1,10 @@
 $(function() {
-    //Lista de los objetos que están actualmente en canvas
-    var objetos = [];
     canvas = $("#myCanvas");
-
-    ancho = $('.span8').width(); //Capturamos el ancho de span8
-    $('#resize').width(ancho); //cambiamos el ancho de resize al ancho que tiene span8
-    $('#myCanvas').attr('width', ancho); // cambiamos el ancho de resize al ancho que tiene span8
     
-    canvas.addLayer({
-        method:"drawRect",
-        name:"fondo",
-        group:"imagenes",
-        x:0,y:0,
-        width:canvas.attr("width"),
-        height:canvas.attr("height"),
-        fromCenter: false,
-        fillStyle: "#fff",
-        index:0
-    }).drawLayers();
-
     //Redibuja el canvas, util para funciones que requieren
     //redibujado como cuando se elimina una imagen o se redimensiona
     //el canvas
     function redibujarCanvas(){
-        canvas.moveLayer("fondo",0);
         canvas.drawLayers();
     }
 
@@ -33,49 +14,42 @@ $(function() {
     //En este caso solo se implementa el momento en que el
     //redimensionado termina, al suceder esto el canvas obtiene
     //el tamaño de su contenedor y posteriormente se redibuja
-    $("#resize").resizable({ 
-        resize: function(event, ui) {
-            $("#myCanvas", this).each(function() { 
-                $(this).attr({ width: ui.size.width, height: ui.size.height });
-                canvas.setLayer("fondo",
-                {
-                    width: canvas.attr("width"),
-                    height:canvas.attr("height"),
-                    fromCenter: false
-                });
-                redibujarCanvas();               
-            });
+    canvas.addLayer({
+        method: "drawImage",
+        index: 0,
+        name: "imagen",
+        source: "",
+        fromCenter: false,
+        x: 0, y: 0,
+        load: function() {
+            $(this).drawLayer();
         }
-    });
+    })
 
     //Esto sucede al dar click en una imagen del explorador
     $("#explorador img").on("click", function(){
-        //Se obtienen el numero de capas que se encuentran en el
-        //grupo imagenes para posteriormente indicar que el index
-        //de la imagen nueva sea igual al numero de capas, es decir
-        //se ubicará por encima de las demas
-        capasimagen = canvas.getLayerGroup("imagenes").length;
 
-        id = objetos.length;
-        var nombre = $(this).attr("id");
+        imagen = new Image();
+        imagen.src = $(this).attr("src");
+        var ancho = imagen.width;
+        var alto = imagen.height;
+        
+        canvas.setLayer("imagen",{
+                            source: imagen,
+                            x:0, y:0,
+                            fromCenter: false
+                        });
 
-        canvas.addLayer({
-            draggable:true,
-            method: "drawImage",
-            index: capasimagen,
-            group: "imagenes",
-            name: id,
-            data:{
-                contenido: nombre
-            },
-            source: $(this).attr("src"),
-            x: 150, y: 150,
-            load: function() {
-                $(this).drawLayer();
-            }
-        })
-                
-        actualizarLista();
+        var tam = {
+            width: ancho,
+            height: alto
+        };
+
+        canvas.attr(tam);
+
+        
+        $("#resize").css(tam);
+
         redibujarCanvas();
     });
     
@@ -103,10 +77,8 @@ $(function() {
         
         $(".lista-objetos .btn-danger").on("click", function(){
             fila = $(this).parents("tr:first");
-            indice = capas.length - fila.index()-1;
 
             canvas.removeLayer(indice);
-            
             actualizarLista();
             redibujarCanvas();
 
@@ -114,15 +86,12 @@ $(function() {
 
         $(".subir-capa").on("click",function(){
             fila = $(this).parents("tr:first");
-            indice = capas.length - fila.index()-1;                
-            
+            indice = capas.length - fila.index()-1;            
             
             capa = canvas.getLayer(indice);
-            capasimagen = canvas.getLayerGroup("imagenes").length;
-        
-            if(indice<capasimagen-1 || (indice < capas.length && indice >= capasimagen))
+
+            if(indice < capas.length && indice > 0)
             { 
-                
                 canvas.moveLayer(indice, indice+1);
                 actualizarLista();
                 redibujarCanvas();
@@ -134,9 +103,8 @@ $(function() {
             indice = capas.length - fila.index()-1;
             
             capa = canvas.getLayer(indice);
-            capasimagen = canvas.getLayerGroup("imagenes").length;
 
-            if(indice>capasimagen || (indice >1 && indice != capasimagen))
+            if(indice >1 && indice)
             {  
                 canvas.moveLayer(indice, indice - 1);
                 actualizarLista();
@@ -146,40 +114,38 @@ $(function() {
         });
 
     }
-    //De la lista se obtendrá el id del boton que fue
-    //presionado y eliminará esta capa
-
-    $(".lista-objetos .btn-danger").on("click", function(){
-        canvas.removeLayer($(this).parents("tr:first-of-type").index());
-        $(this).parent().remove();
-        redibujarCanvas();
-    });
+    var capaActual;
+    var texto = {
+            draggable: true,
+            group: "texto",
+            method: "drawText",
+            fillStyle: "#9cf",
+            strokeStyle: "#25a",
+            strokeWidth: 0,
+            x: 20, y: 20,
+            fromCenter: false,
+            font: "36pt Verdana",
+            background: "#000",
+            click: function(layer) {
+                capaActual = layer.index;
+                console.log(capaActual);
+            }
+        };
 
     $("#dibujarTexto").on("click",function() {
         text = $("#texto").val();
-
-        id = objetos.length;
-
         capas = canvas.getLayers().length;
         
-        canvas.addLayer({
-             draggable: true,
-             name: id,
-             index:capas,
-             group: "texto",
-             method: "drawText",
-             fillStyle: "#9cf",
-             strokeStyle: "#25a",
-             strokeWidth: 2,
+        var distinto = {
              data:{
                 contenido: text
              },
-             x: 20, y: 20,
-             fromCenter: false,
-             font: "36pt Verdana, sans-serif",
              text: text,
-             background: "#000"
-         });
+         };
+
+        var distinto = $.extend(distinto,texto);
+
+        canvas.addLayer(distinto);
 
         actualizarLista();
         redibujarCanvas();
@@ -187,7 +153,6 @@ $(function() {
 
     var dataURL = '';
     var imagenActual;
-
 
     $(".genImagen").on("click",function(){
         var temp_dataURL = canvas.getCanvasImage("png");
@@ -203,15 +168,11 @@ $(function() {
                 if(id === "descargar")
                 {
                     window.location.href =  "download.php?path="+ imagenActual;
-                    actualizarLista();
-                    redibujarCanvas();
                 }
                 else if(id === "publicarImagen")
                 {
                     console.log("publicar");
                     publicarImagen(imagenActual);
-                    actualizarLista();
-                    redibujarCanvas();
                 }
             });
         }
@@ -220,19 +181,14 @@ $(function() {
             if(id === "descargar")
                 {
                     window.location.href =  "download.php?path="+ imagenActual;
-                    actualizarLista();
-                    redibujarCanvas();
                 }
             else if(id === "publicarImagen")
             {
                 console.log("publicar");
                 publicarImagen(imagenActual);
-                actualizarLista();
-                redibujarCanvas();
             }
         }
     });
-
 
     function crearImagen(url,boton,callback) {
         $.ajax({
@@ -247,7 +203,6 @@ $(function() {
             }
         });
     }
-
 
 });
 

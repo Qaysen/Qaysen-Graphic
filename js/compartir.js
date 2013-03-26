@@ -1,48 +1,19 @@
-$(document).on('ready', inicio);
-
-function inicio()
-{
-  $('#compartir').on('click', compartir);
+$(document).on("ready", inicio);
+function inicio(){
+  $('#compartir').on('click',CompartirEnMiMuro);
 }
 
-function compartir()
-{
-    
-    FB.getLoginStatus(function(response) 
-    {
-      if(response.status === 'connected') 
-      {
-        var uid = response.authResponse.userID;
-        var accessToken = response.authResponse.accessToken;
-        FB.api('/me', function(response) 
-        {
-           console.log('Estas registrado');
-        });
-
-        //Compartir imagen en el muro
-        var body = 'Mi primera iamgen subida';
-        var imagen = 'http://edwinpgm.com/' + document.getElementById('publicarFB').innerHTML;
-        FB.api('/photos', 'post', {
-            message:body,
-            url:imagen        
-        }, function(response){
-
-            if (!response || response.error) {
-                alert('Error occured' + response.error);
-            } else {
-                alert('Post ID: ' + response.id);
-            }
-
-        });
-      }
-      else if (response.status === 'not_authorized') 
-      {
-        console.log("No estas autorizado");
-      }
-      else 
-      {
-        console.log("No estas logueado");
-      }
-    });
-
+function CompartirEnMiMuro() {
+  FB.init({appId: "520023464714856", status: true, cookie: true});
+  // calling the API ...
+  var obj = {
+    method: 'feed',
+    link: 'localhost/Qaysen-Graphic/',
+    picture: 'http://www.veomemes.com/wp-content/uploads/2012/08/agua-en-el-oido.jpg',
+    name: 'Qaysen-Graphic',
+    caption: 'La ultima  ',
+    description: 'Herramienta que permite crear tus propios memes'
   };
+
+  FB.ui(obj);
+}
