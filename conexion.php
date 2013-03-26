@@ -7,6 +7,4 @@ $db="memes";
 $dbc=mysql_connect("$dbhost","$dbuser","$dbpass");
 mysql_select_db("$db"); 
 
-//Comenzar la sesión
-session_start(); 
 ?>
