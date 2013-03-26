@@ -126,7 +126,7 @@
                     include('conexion.php');
                           
                             $query="SELECT * FROM imagen ORDER BY nombre DESC";
-                            if($r=mysql_db_query("memes",$query,$dbc)){
+                            if($r=mysql_query($query,$dbc)){
 
                                 while($row=mysql_fetch_array($r)){
     
