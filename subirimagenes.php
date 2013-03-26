@@ -22,7 +22,7 @@
 		$rutaEnServidorThum='img_thumbs';
 		$rutaDestinoThum=$rutaEnServidorThum.'/'.$nombreimagen;
 		$thumb->save($rutaDestinoThum);				// save your thumbnail to file
-	$res=mysql_query("insert into imagenv001(nombre,categoria,ruta,thumbs) values('$_POST[nombre]','$_POST[categoria]','".$rutaDestino."','".$rutaDestinoThum."')",$conexion) or die("problemas" .mysql_error());
+	$res=mysql_query("insert into imagenv001(nombre,ruta,thumbs) values('$_POST[nombre]','".$rutaDestino."','".$rutaDestinoThum."')",$conexion) or die("problemas" .mysql_error());
 	if ($res){
 
 		echo 'inserción con exito';
