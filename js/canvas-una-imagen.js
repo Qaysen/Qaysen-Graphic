@@ -81,6 +81,7 @@ $(function() {
         
         $(".lista-objetos .btn-danger").on("click", function(){
             fila = $(this).parents("tr:first");
+            indice = capas.length - fila.index()-1;    
 
             canvas.removeLayer(indice);
             actualizarLista();

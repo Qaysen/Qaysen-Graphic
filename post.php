@@ -14,7 +14,6 @@
             #resize
             {
                 width:600px;
-                height: 600px;
             }
 
         </style>
@@ -24,12 +23,7 @@
         <link rel="stylesheet" type="text/css" href="css/facebook.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <link href="css/jquery-ui-1.10.2.custom.css" rel="stylesheet">
-
         <script src="js/jquery-1.9.1.min.js"></script>
-        <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
-        <script src="js/jcanvas.min.js"></script>
-        <script src="js/canvas-una-imagen.js"></script>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -45,36 +39,17 @@
             <!-- Example row of columns -->
             <div class="row main">
                 <div class="span4 herramientas">
-
                     <header>
                         <h1>Qaysen Graphic</h1>
                     </header>
-
-                    <div class="agregar-texto">
-                        <fieldset>
-                            <legend>Agregar Texto</legend>
-                            <input type="text" placeholder="Texto a agregar" id= "texto">
-                            <button type="submit" class="btn" id= "dibujarTexto">Agregar texto</button>
-                        </fieldset>
-                    </div>
                     <br>
-                    <div class="lista-objetos">
-                        <legend>Lista de objetos</legend>
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Objeto</th>
-                              <th>Accion</th>
-                              <th>Capa</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          </tbody>
-                        </table>
-                    </div>
                     <div class="compartir">
+                        <legend>Crea tus propios memes</legend>
+                        <p>Si quieres creas tus propios memes ingresa aqui:</p>
                         <legend>Compartelo con tus amigos</legend>
+
+                        <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+
                         <div class="control-group">
                             <label class="control-label">Registrate en la app:</label>
                             <div class="controls">
@@ -105,46 +80,18 @@
                 </div>
                 <div class="span8 canvas">
                     <div id="resize">
-                        <canvas id="myCanvas" width="600" height="600"></canvas>
+                        <img src="">
+                        <div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>
                     </div>
                 </div>
             </div>
 
         </div> <!-- /container -->
-        <div class="row imagenes uibutton-toolbar" id="explorador">
-            <div class="mostrar-mas">
-
-            </div>
-            <div class="explorador" id="explorador">
-                <ul>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150" id="dsadasdasdas"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
-                </ul>
-            </div>
-            <div class="categorias uibutton-toolbar">
-
-            </div>
+        <div class="row imagenes uibutton-toolbar">
         </div>
 
         <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>
         <script type="text/javascript" src="js/facebook.js"></script> 
-        <!--<script src="js/login.js"></script>
-        <script src="js/compartir.js"></script>
-        <script src="js/publicar-imagen.js"></script>-->
-
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-
-        <script src="js/vendor/bootstrap.min.js"></script>-->
 
         <script src="js/main.js"></script>
         <script type="text/javascript">
