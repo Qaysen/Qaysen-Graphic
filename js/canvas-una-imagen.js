@@ -30,14 +30,18 @@ $(function() {
     $("#explorador img").on("click", function(){
 
         imagen = new Image();
-        imagen.src = $(this).attr("src");
+        var src = $(this).attr("src").replace("_thumbs","");
+        imagen.src = src;
         var ancho = imagen.width;
         var alto = imagen.height;
         
         canvas.setLayer("imagen",{
                             source: imagen,
                             x:0, y:0,
-                            fromCenter: false
+                            fromCenter: false,
+                            onLoad: function(layer){
+                                $(this).drawLayers();
+                            }
                         });
 
         var tam = {
