@@ -1,20 +1,37 @@
 <?php 
-	/*$max=1000000;
-	$nombreclean=htmlspecialchars($email);
-	$nuevodirectorio="$DOCUMENT_ROOT";
-	mkdir($nuevodirectorio);
-	$uploaddir="nuevodirectorio/";
-	$filesize=$_FILE["upfile"]["size"];
-	$filename=trim($_FILE["upfile"]["name"]);
-	$filename=substr($filename,-20);
-	$filename=eref_replace("","",$filename);
-	$uploadfile=$uploaddir.$filename;
-	move_uploaded_file($_FILES['upfile']['tmp_name'], $uploadfile)*/
 
-	$conexion=mysql_connect("localhost","root","123")
-	 or die("problemas de conexion");
-	mysql_select_db("imagen",$conexion) or die("Prolemas en la seleccion");
-	mysql_query("insert into imagenv001(nombre,categoria,ruta) values('$_POST[nombre]','$_POST[categoria]','0')",$conexion) or die("problemas" .mysql_error());
+	include("resize.php");
+	$conexion=mysql_connect("localhost","root","melquiades") or die("problemas de conexion");
+	mysql_select_db("imagen",$conexion) or die("no existe la base de datos.");
+	$rutaEnServidor='img';
+	$rutaTemporal=$_FILES['imagen']['tmp_name'];
+	$nombreimagen=$_FILES['imagen']['name'];	
+
+	$thumbsss='thumbs_';
+	
+	$rutaDestino=$rutaEnServidor.'/'.$nombreimagen;
+	move_uploaded_file($rutaTemporal,$rutaDestino);
+	//Creamos el thumbnail
+
+		$thumb=new thumbnail($rutaDestino);			// generate image_file, set filename to resize
+		//$thumb->size_width(90);				// set width for thumbnail, or
+		//$thumb->size_height(90);				// set height for thumbnail, or
+		$thumb->size(90);						// set the biggest width or height for thumbnail
+		$thumb->jpeg_quality(70);				// [OPTIONAL] set quality for jpeg only (0 - 100) (worst - best), default = 75
+		$thumb->show();						// show your thumbnail
+		$rutaEnServidorThum='img_thumbs';
+		$rutaDestinoThum=$rutaEnServidorThum.'/'.$nombreimagen;
+		$thumb->save($rutaDestinoThum);				// save your thumbnail to file
+	$res=mysql_query("insert into imagenv001(nombre,categoria,ruta,thumbs) values('$_POST[nombre]','$_POST[categoria]','".$rutaDestino."','".$rutaDestinoThum."')",$conexion) or die("problemas" .mysql_error());
+	if ($res){
+
+		echo 'inserción con exito';
+	}
+	else{
+		echo 'no se puedo insertar';
+	} 
+
 	mysql_close($conexion);
-	echo "listo";
+
  ?>
+
