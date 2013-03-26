@@ -53,7 +53,7 @@ function publicarImagen(rutaImagen)
       var uid = response.authResponse.userID;
       var accessToken = response.authResponse.accessToken;
 
-      descargar();
+      publicarMuro(rutaImagen);
     }
     else if (response.status === 'not_authorized') 
     {
@@ -67,35 +67,9 @@ function publicarImagen(rutaImagen)
 
 };
 
-function descargar() 
+function publicarMuro(imagen)
 {
-    dataURL = $("canvas").getCanvasImage("png");
-    //console.log(dataURL);
-    //document.getElementById('canvasImg').src = dataURL;
-
-    $.ajax({
-        type: 'POST',
-        //url: '/qaysen/save.php',
-        url: 'save.php',
-        data: {data:dataURL},
-        success: function(data) {
-            //console.log(data);
-            $('#publicarFB').html(data);
-            var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
-            //var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
-            var imagen = 'http://localhost/Qaysen-Graphic/' + document.getElementById('publicarFB').innerHTML;
-            
-            publicarMuro(mensaje, imagen);
-
-        },
-        error: function(data) {
-            console.log(data);
-        }
-    });
-}
-
-function publicarMuro(mensaje, imagen)
-{
+	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
     FB.api('/photos', 'post', {
         message:mensaje,
         url:imagen        
@@ -113,7 +87,7 @@ function publicarMuro(mensaje, imagen)
 function CompartirEnMiMuro() {
 	var obj = {
 		method: 'feed',
-		link: 'http://localhost/Qaysen-Graphic/',
+		link: 'http://localhost/Qaysen-Graphic/vista.php?id=',
 		picture: 'http://www.veomemes.com/wp-content/uploads/2012/08/agua-en-el-oido.jpg',
 		name: 'Qaysen-Graphic',
 		caption: 'La ultima  ',
