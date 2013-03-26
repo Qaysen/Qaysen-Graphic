@@ -32,7 +32,7 @@ function publicarImagen()
               success: function(data) {
                   console.log(data);
                   $('#publicarFB').html(data);
-                  var body = 'Mi primera iamgen subida';
+                  var body = 'Sube tus imagenes y compartelas en tu muro! Ingresa a --> <a href="http://ver-novelas.com/qaysen/">Haz tu meme</a>';
                   var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
                   FB.api('/photos', 'post', {
                       message:body,
@@ -55,7 +55,7 @@ function publicarImagen()
       }
 
       //Compartir imagen en el muro
-      descargar();
+      //descargar();
       //var body = 'Mi primera iamgen subida';
       //var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
       //var imagen = 'http://localhost/Qaysen-Graphic/' + document.getElementById('publicarFB').innerHTML;
