@@ -33,7 +33,14 @@ $(function() {
         var src = $(this).attr("src").replace("_thumbs","");
         imagen.src = src;
         var ancho = imagen.width;
-        var alto = imagen.height;
+        //var alto = imagen.height;
+
+        console.log(ancho);
+
+        imagen.width = canvas.attr('width');
+        var ancho = imagen.width;
+
+        console.log(imagen);
         
         canvas.setLayer("imagen",{
                             source: imagen,
@@ -44,15 +51,15 @@ $(function() {
                             }
                         });
 
-        var tam = {
+        /*var tam = {
             width: ancho,
             height: alto
-        };
+        };*/
 
-        canvas.attr(tam);
+        //canvas.attr(tam);
 
         
-        $("#resize").css(tam);
+        //$("#resize").css(tam);
 
         redibujarCanvas();
     });
@@ -81,6 +88,7 @@ $(function() {
         
         $(".lista-objetos .btn-danger").on("click", function(){
             fila = $(this).parents("tr:first");
+            indice = capas.length - fila.index()-1;    
 
             canvas.removeLayer(indice);
             actualizarLista();
