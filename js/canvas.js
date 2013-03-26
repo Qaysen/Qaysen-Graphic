@@ -206,15 +206,16 @@ $(function() {
                 if(id === "descargar")
                 {
                     window.location.href =  "download.php?path="+ imagenActual;
-                    actualizarLista();
-                    redibujarCanvas();
                 }
                 else if(id === "publicarImagen")
                 {
                     console.log("publicar");
                     publicarImagen(imagenActual);
-                    actualizarLista();
-                    redibujarCanvas();
+                }
+                else if(id === "CompartirEnMiMuro")
+                {
+                    console.log("");
+                    CompartirEnMiMuro(imagenActual);
                 }
             });
         }
@@ -223,15 +224,15 @@ $(function() {
             if(id === "descargar")
                 {
                     window.location.href =  "download.php?path="+ imagenActual;
-                    actualizarLista();
-                    redibujarCanvas();
                 }
             else if(id === "publicarImagen")
             {
                 console.log("publicar");
                 publicarImagen(imagenActual);
-                actualizarLista();
-                redibujarCanvas();
+            }
+            else if(id == "CompartirEnMiMuro")
+            {
+                CompartiEnMiMuro(imagenActual);
             }
         }
     });

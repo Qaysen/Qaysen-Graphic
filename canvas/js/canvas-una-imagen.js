@@ -1,6 +1,6 @@
 $(function() {
     canvas = $("#myCanvas");
-    
+    var fondoCanvas;
     //Redibuja el canvas, util para funciones que requieren
     //redibujado como cuando se elimina una imagen o se redimensiona
     //el canvas
@@ -28,7 +28,8 @@ $(function() {
 
     //Esto sucede al dar click en una imagen del explorador
     $("#explorador img").on("click", function(){
-
+        fondoCanvas.id = $(this).attr("value");
+        fondoCanvas.nombre  = $(this).attr("id");
         imagen = new Image();
         imagen.src = $(this).attr("src");
         var ancho = imagen.width;
@@ -174,6 +175,11 @@ $(function() {
                     console.log("publicar");
                     publicarImagen(imagenActual);
                 }
+                else if(id === "CompartirEnMiMuro")
+                {
+                    console.log("");
+                    CompartirEnMiMuro(fondoCanvas, imagenActual);
+                }
             });
         }
         else
@@ -186,6 +192,10 @@ $(function() {
             {
                 console.log("publicar");
                 publicarImagen(imagenActual);
+            }
+            else if(id == "CompartirEnMiMuro")
+            {
+                CompartiEnMiMuro(fondoCanvas, imagenActual);
             }
         }
     });
