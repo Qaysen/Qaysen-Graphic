@@ -194,7 +194,12 @@ $(function() {
 
     function descargar() 
     {
-        dataURL = $("canvas").getCanvasImage("png");
+        var dato = $("#myCanvas").getCanvasImage("png");
+        dato = dato.replace("image/png", "image/octet-stream");
+        document.location.href = dato;
+        actualizarLista();
+        redibujarCanvas();
+        /*dataURL = $("canvas").getCanvasImage("png");
         //var dataURL = canvas.toDataURL("image/png");
         console.log(dataURL);
         //document.getElementById('canvasImg').src = dataURL;
@@ -210,10 +215,10 @@ $(function() {
             error: function(data) {
                 console.log(data);
             }
-        });
+        });*/
     }
 
-    $(btnGen).on("click",function() {
+    /*$(btnGen).on("click",function() {
         dataURL = $("canvas").getCanvasImage("png");
         //var dataURL = canvas.toDataURL("image/png");
         console.log(dataURL);
@@ -232,10 +237,10 @@ $(function() {
             }
         });
 
-        /*$.post("/save.php", {data: dataURL}, function(imagen) {
+        $.post("/save.php", {data: dataURL}, function(imagen) {
             console.log(imagen);
             $('#publicarFB').html(imagen);
-        });*/
-    });
+        });
+    });*/
 });
 
