@@ -1,1 +1,0 @@
-<p class="muted">Este es un proyecto de Qaysen - 2013</p>
