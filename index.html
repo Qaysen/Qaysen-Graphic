@@ -93,13 +93,14 @@
                         <div class="control-group">
                             <label class="control-label">Publicar en el muro:</label>
                             <div class="controls">
-                              <input class="uibutton confirm" type="submit" value="Publicar imagen" id="publicarImagen">
+                              <input class="genImagen uibutton confirm" type="submit" value="Publicar imagen" id="publicarImagen">
                             </div>
                         </div>
                         <div class="control-group">
+
                             <label class="control-label">Descargar:</label>
                             <div class="controls">
-                              <a class="uibutton special" id="descargar">Descargar imagen</a>
+                              <a class="genImagen uibutton special" id="descargar">Descargar imagen</a>
                             </div>
                         </div>
                         <button id="btnGen">generar</button>
@@ -128,7 +129,6 @@
 
             </div>
         </div>
-
         <div id="explorador" class="photobar">   
             <div class="thumbs albums" id="sets">
                 <a href="#" class="prev"></a>
@@ -176,5 +176,7 @@
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
+
+        <div id="url" hidden><div>
     </body>
 </html>
