@@ -1,7 +1,7 @@
 <?php
 
 $data = $_POST['data'];
-$file = md5(uniqid()) . '.png';
+$file = md5($data) . '.png';
 
 // remove "data:image/png;base64,"
 $uri =  substr($data,strpos($data,",")+1);

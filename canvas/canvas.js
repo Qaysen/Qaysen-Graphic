@@ -188,7 +188,6 @@ $(function() {
     var dataURL = '';
     var imagenActual;
 
-
     $(".genImagen").on("click",function(){
         var temp_dataURL = canvas.getCanvasImage("png");
         var id = $(this).attr("id");
@@ -203,15 +202,11 @@ $(function() {
                 if(id === "descargar")
                 {
                     window.location.href =  "download.php?path="+ imagenActual;
-                    actualizarLista();
-                    redibujarCanvas();
                 }
                 else if(id === "publicarImagen")
                 {
                     console.log("publicar");
                     publicarImagen(imagenActual);
-                    actualizarLista();
-                    redibujarCanvas();
                 }
             });
         }
@@ -220,19 +215,14 @@ $(function() {
             if(id === "descargar")
                 {
                     window.location.href =  "download.php?path="+ imagenActual;
-                    actualizarLista();
-                    redibujarCanvas();
                 }
             else if(id === "publicarImagen")
             {
                 console.log("publicar");
                 publicarImagen(imagenActual);
-                actualizarLista();
-                redibujarCanvas();
             }
         }
     });
-
 
     function crearImagen(url,boton,callback) {
         $.ajax({
@@ -247,7 +237,6 @@ $(function() {
             }
         });
     }
-
 
 });
 

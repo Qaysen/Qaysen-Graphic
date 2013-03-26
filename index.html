@@ -33,7 +33,7 @@
         <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
         <script src="js/jcanvas.min.js"></script>
-        <script src="js/canvas.js"></script>
+        <script src="js/canvas-una-imagen.js"></script>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -93,20 +93,17 @@
                         <div class="control-group">
                             <label class="control-label">Publicar en el muro:</label>
                             <div class="controls">
-                              <input class="uibutton confirm" type="submit" value="Publicar imagen" id="publicarImagen">
+                              <input class="genImagen uibutton confirm" type="submit" value="Publicar imagen" id="publicarImagen">
                             </div>
                         </div>
                         <div class="control-group">
+
                             <label class="control-label">Descargar:</label>
                             <div class="controls">
-                              <a class="uibutton special" id="descargar">Descargar imagen</a>
+                              <a class="genImagen uibutton special" id="descargar">Descargar imagen</a>
                             </div>
                         </div>
-                        <button id="btnGen">generar</button>
-                        <img id="canvasImg" alt="" style="width: 300px;">
-                        <div id="publicarFB">
-
-                        </div>
+                        <div id="publicarFB" style="opacity: 0"></div>
                     </div>
                 </div>
                 <div class="span8 canvas">
@@ -121,47 +118,31 @@
             <div class="mostrar-mas">
 
             </div>
-            <div class="slider">
-
+            <div class="explorador" id="explorador">
+                <ul>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150" id="dsadasdasdas"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                </ul>
             </div>
             <div class="categorias uibutton-toolbar">
 
             </div>
         </div>
 
-        <div id="explorador" class="photobar">   
-            <div class="thumbs albums" id="sets">
-                <a href="#" class="prev"></a>
-                <div class="thumbsWrapper">
-                    <ul style="width: 10285px;">
-                    <li><a class=""><span>Chris's Best Non Portraits</span><img style="" src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" alt="72157625072844296"></a></li>
-                    <li><a class="" href="#"><span>Best Portraits</span><img style="" src="http://farm4.static.flickr.com/3534/5737823327_efa29fb4a8_s.jpg" alt="72157626363926910"></a></li>
-                    <li><a class="" href="#"><span>Best Black</span><img style="" src="http://farm5.static.flickr.com/4099/4862048833_116581c8c6_s.jpg" alt="72157626364088948"></a></li><li><a class="" href="#"><span>Dance</span><img style="" src="http://farm8.static.flickr.com/7147/6609411337_f22be838ee_s.jpg" alt="72157622146275050"></a></li><li><a class="" href="#"><span>Best Palettes</span><img style="" src="http://farm6.static.flickr.com/5086/5308873562_0fbe4b5a6c_s.jpg" alt="72157626364070642"></a></li><li><a class="" href="#"><span>Portraits</span><img style="" src="http://farm5.static.flickr.com/4027/5126784725_5bd45c388b_s.jpg" alt="72157616071232647"></a></li><li><a class="" href="#"><span>Most Interesting Pictures</span><img style="" src="http://farm4.static.flickr.com/3067/2947216288_f1b44b4350_s.jpg" alt="72157603986309498"></a></li><li><a class="" href="#"><span>Black and White</span><img style="" src="http://farm4.static.flickr.com/3203/3171537894_226fc1d7e1_s.jpg" alt="72157603905237900"></a></li><li><a class="" href="#"><span>COLOR</span><img style="" src="http://farm7.static.flickr.com/6181/6053908921_8ff613201e_s.jpg" alt="72157627502010046"></a></li><li><a class="" href="#"><span>Wine country</span><img style="" src="http://farm6.static.flickr.com/5260/5419748581_8a94022afd_s.jpg" alt="72157623335818651"></a></li><li><a class="" href="#"><span>Highway 1 South</span><img style="" src="http://farm3.static.flickr.com/2664/4241302442_d3d45d4a5d_s.jpg" alt="72157623004654035"></a></li><li><a class="" href="#"><span>Best of Paris</span><img style="" src="http://farm3.static.flickr.com/2551/3879406492_e3e90a6943_s.jpg" alt="72157622090814803"></a></li><li><a class="" href="#"><span>Shayna</span><img style="" src="http://farm7.static.flickr.com/6111/6278096945_e5f3c98fc1_s.jpg" alt="72157615038722141"></a></li><li><a class="" href="#"><span>France Trip</span><img style="" src="http://farm3.static.flickr.com/2490/3827815963_782f594181_s.jpg" alt="72157621803909999"></a></li><li><a class="" href="#"><span>Best environment</span><img style="" src="http://farm5.static.flickr.com/4150/4994524380_31caa978e8_s.jpg" alt="72157626364022036"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li><li><a class="toLoad" href="#"></a></li></ul>
-                </div>
-                <a href="#" class="next"></a>
-            </div>  
-            <div class="thumbs images" id="images" style="bottom:-125px;">
-                <a href="#" class="prev"></a>
-                <div class="thumbsWrapper">
-                    <ul></ul>
-                </div>
-                <a href="#" class="next"></a>
-                <span class="images_toggle">
-                    Set: 
-                    <span id="setName"></span>
-                    <a id="images_toggle">Back to Sets</a>
-                </span>
-            </div>
-            <a id="flickr_toggle" class="toggle">
-                Flickr Photostream
-                <span style="visibility: hidden;" class="loading_small"></span>
-            </a>
-        </div>
-
-        <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script> 
-        <script src="js/login.js"></script>
+        <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>
+        <script type="text/javascript" src="js/facebook.js"></script> 
+        <!--<script src="js/login.js"></script>
         <script src="js/compartir.js"></script>
-        <script src="js/publicar-imagen.js"></script>
+        <script src="js/publicar-imagen.js"></script>-->
 
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
@@ -169,12 +150,22 @@
         <script src="js/vendor/bootstrap.min.js"></script>-->
 
         <script src="js/main.js"></script>
-
+        <script type="text/javascript">
+            (function(d, debug){
+               var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement('script'); js.id = id; js.async = true;
+               js.src = "//connect.facebook.net/es_LA/all" + (debug ? "/debug" : "") + ".js";
+               ref.parentNode.insertBefore(js, ref);
+             }(document, /*debug*/ false));
+        </script>
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
+
+        <div id="url" hidden><div>
     </body>
 </html>
