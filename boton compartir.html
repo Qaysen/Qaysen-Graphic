@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
+  <head>
+    <title>My Feed Dialog Page</title>
+  </head>
+  <body>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src='http://connect.facebook.net/en_US/all.js'></script>
+    
+    <button id ="compartir" >Compartir</button>
+
+
+
+<!--
+	Sciptt que permite compartir la imagen ya hecha
+	picture = url de la imagen en un lgar del servidor
+	caption = Podrian colocar el nombre del meme
+	name = Nompbre de la pagina
+	description = Que funcion cumple la pagina
+	link = direccionar a la pagina
+-->
+    <script> 
+      $(document).on("ready", inicio);
+      function inicio(){
+      	$('#compartir').on('click',CompartirEnMiMuro);
+      }
+
+      function CompartirEnMiMuro() {
+		FB.init({appId: "468416426563099", status: true, cookie: true});
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          link: 'localhost/Qaysen-Graphic/',
+          picture: 'http://www.veomemes.com/wp-content/uploads/2012/08/agua-en-el-oido.jpg',
+          name: 'Qaysen-Graphic',
+          caption: 'La ultima  ',
+          description: 'Herramienta que permite crear tus propios memes'
+        };
+
+        FB.ui(obj);
+      }
+    
+    </script>
+  </body>
+</html>
