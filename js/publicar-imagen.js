@@ -55,7 +55,7 @@ function publicarImagen()
       }
 
       //Compartir imagen en el muro
-      //descargar();
+      descargar();
       //var body = 'Mi primera iamgen subida';
       //var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
       //var imagen = 'http://localhost/Qaysen-Graphic/' + document.getElementById('publicarFB').innerHTML;
