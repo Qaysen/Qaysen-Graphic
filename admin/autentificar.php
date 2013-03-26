@@ -15,7 +15,7 @@ if( ($_POST['nick'] == ' ') or ($_POST['pass'] == ' ') )// VALIDAR CAMPOS VACIOS
 	Header("Location: index.php"); // redirecciona
 }else{
 	// VERIFICAR SI EXISTE EL USUARIO EN LA BASE DE DATOS
-	$usuarios=mysql_query("SELECT * FROM users WHERE nick='$_POST[nick]' and pass='$_POST[pass]' ");
+	$usuarios=mysql_query("SELECT * FROM usuario WHERE nick='$_POST[nick]' and pass='$_POST[pass]' ");
 	if($user_ok = mysql_fetch_array($usuarios)) // SI EXISTE USUARIO , INICIAR SESION
 	{
 		$_SESSION['usuario'] = $user_ok["nick"]; //ASIGANR EL NICK A USUARIO DE SESION

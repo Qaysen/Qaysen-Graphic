@@ -122,14 +122,15 @@
                 <ul>
                 
                     <?php 
-                            $dbc=mysql_connect('localhost','root','123');
-                            mysql_select_db('imagen');
-                            $query="SELECT * FROM imagenv001 ORDER BY nombre DESC";
-                            if($r=mysql_db_query("imagen",$query,$dbc)){
+
+                    include('conexion.php');
+                          
+                            $query="SELECT * FROM imagen ORDER BY nombre DESC";
+                            if($r=mysql_db_query("memes",$query,$dbc)){
 
                                 while($row=mysql_fetch_array($r)){
     
-                               echo   "<li><img id='{$row['nombre']}' src='{$row['thumbs']}' ></li>"; 
+                               echo   "<li><img id='{$row['nombre']}' value='{$row['id']}' src='{$row['thumbs']}' ></li>"; 
                    
 
                             }

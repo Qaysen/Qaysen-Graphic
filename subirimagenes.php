@@ -1,8 +1,8 @@
 <?php 
 
 	include("resize.php");
-	$conexion=mysql_connect("localhost","root","melquiades") or die("problemas de conexion");
-	mysql_select_db("imagen",$conexion) or die("no existe la base de datos.");
+	include('conexion.php');
+	
 	$rutaEnServidor='img';
 	$rutaTemporal=$_FILES['imagen']['tmp_name'];
 	$nombreimagen=$_FILES['imagen']['name'];	
@@ -22,7 +22,7 @@
 		$rutaEnServidorThum='img_thumbs';
 		$rutaDestinoThum=$rutaEnServidorThum.'/'.$nombreimagen;
 		$thumb->save($rutaDestinoThum);				// save your thumbnail to file
-	$res=mysql_query("insert into imagenv001(nombre,ruta,thumbs) values('$_POST[nombre]','".$rutaDestino."','".$rutaDestinoThum."')",$conexion) or die("problemas" .mysql_error());
+	$res=mysql_query("insert into imagen(nombre,ruta,thumbs) values('$_POST[nombre]','".$rutaDestino."','".$rutaDestinoThum."')",$dbc) or die("problemas" .mysql_error());
 	if ($res){
 
 		echo 'inserción con exito';
@@ -31,7 +31,7 @@
 		echo 'no se puedo insertar';
 	} 
 
-	mysql_close($conexion);
+	mysql_close($dbc);
 
  ?>
 
