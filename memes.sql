@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-03-2013 a las 16:44:38
+-- Tiempo de generación: 26-03-2013 a las 17:11:56
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.6-1ubuntu1.2
 
@@ -32,21 +32,14 @@ CREATE TABLE IF NOT EXISTS `imagen` (
   `ruta` varchar(50) NOT NULL,
   `thumbs` varchar(70) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=154 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=155 ;
 
 --
 -- Volcado de datos para la tabla `imagen`
 --
 
 INSERT INTO `imagen` (`id`, `nombre`, `ruta`, `thumbs`) VALUES
-(137, 'dsad', 'img/cha.jpg', 'img_thumbs/cha.jpg'),
-(138, 'daniel', 'img/descarga (1).jpg', 'img_thumbs/descarga (1).jpg'),
-(139, 'daniel1', 'img/descarga.jpg', 'img_thumbs/descarga.jpg'),
-(140, 'daniel2', 'img/descarga (1).jpg', 'img_thumbs/descarga (1).jpg'),
-(141, 'daniel3', 'img/descarga (2).jpg', 'img_thumbs/descarga (2).jpg'),
-(142, 'daniel4', 'img/descarga (3).jpg', 'img_thumbs/descarga (3).jpg'),
-(143, 'daniel5', 'img/descarga (4).jpg', 'img_thumbs/descarga (4).jpg'),
-(144, 'daniel6', 'img/Enrique Martinez.jpg', 'img_thumbs/Enrique Martinez.jpg');
+(137, 'dsad', 'img/cha.jpg', 'img_thumbs/cha.jpg');
 
 -- --------------------------------------------------------
 
@@ -76,6 +69,16 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `pass` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `meme_generado`
+--
+ALTER TABLE `meme_generado`
+  ADD CONSTRAINT `meme_generado_ibfk_1` FOREIGN KEY (`id_imagen`) REFERENCES `imagen` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

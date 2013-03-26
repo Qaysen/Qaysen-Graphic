@@ -31,7 +31,7 @@
 		echo 'no se puedo insertar';
 	} 
 
-	mysql_close($conexion);
+	mysql_close($dbc);
 
  ?>
 
