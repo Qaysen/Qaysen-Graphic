@@ -155,6 +155,7 @@ $(function() {
         redibujarCanvas();
     });
 
+
     $("#dibujarTexto").on("click",function() {
         text = $("#texto").val();
 
@@ -168,15 +169,17 @@ $(function() {
              index:capas,
              group: "texto",
              method: "drawText",
-             fillStyle: "#9cf",
-             strokeStyle: "#25a",
-             strokeWidth: 2,
+             fillStyle: "#fff",
+             strokeStyle: "#000",
+             strokeWidth: 1,
              data:{
                 contenido: text
              },
+             shadowColor: "#000",
+             shadowBlur: 6,
              x: 20, y: 20,
              fromCenter: false,
-             font: "36pt Verdana, sans-serif",
+             font: "36pt Arial Black, sans-serif",
              text: text,
              background: "#000"
          });

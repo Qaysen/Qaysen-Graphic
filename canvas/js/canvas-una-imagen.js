@@ -119,12 +119,12 @@ $(function() {
             draggable: true,
             group: "texto",
             method: "drawText",
-            fillStyle: "#9cf",
-            strokeStyle: "#25a",
+            fillStyle: "#fff",
+            strokeStyle: "#000",
             strokeWidth: 0,
             x: 20, y: 20,
             fromCenter: false,
-            font: "36pt Verdana",
+            font: "36pt Arial Black",
             background: "#000",
             click: function(layer) {
                 capaActual = layer.index;
