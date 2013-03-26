@@ -19,6 +19,7 @@ function publicarImagen()
       });
 
       //Compartir imagen en el muro
+      descargar();
       var body = 'Mi primera iamgen subida';
       var imagen = 'http://ver-novelas.com/qaysen/' + document.getElementById('publicarFB').innerHTML;
       FB.api('/photos', 'post', {
@@ -46,6 +47,27 @@ function publicarImagen()
   });
 
 };
+
+function descargar() 
+{
+    dataURL = $("canvas").getCanvasImage("png");
+    //var dataURL = canvas.toDataURL("image/png");
+    console.log(dataURL);
+    //document.getElementById('canvasImg').src = dataURL;
+
+    $.ajax({
+        type: 'POST',
+        url: 'save.php',
+        data: {data:dataURL},
+        success: function(data) {
+            console.log(data);
+            $('#publicarFB').html(data);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+}
 
 (function(d, debug){
    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];

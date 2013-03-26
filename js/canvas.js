@@ -48,12 +48,6 @@ $(function() {
         }
     });
 
-    //Se agrega un objeto a la lista de objetos, especificando
-    //su nombre y su tipo
-    function agregarObjeto (datos) {
-        objetos.push(datos);
-    }
-
     //Esto sucede al dar click en una imagen del explorador
     $("#explorador img").on("click", function(){
         //Se obtienen el numero de capas que se encuentran en el
