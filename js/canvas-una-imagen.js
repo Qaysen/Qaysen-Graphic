@@ -33,14 +33,7 @@ $(function() {
         var src = $(this).attr("src").replace("_thumbs","");
         imagen.src = src;
         var ancho = imagen.width;
-        //var alto = imagen.height;
-
-        console.log(ancho);
-
-        imagen.width = canvas.attr('width');
-        var ancho = imagen.width;
-
-        console.log(imagen);
+        var alto = imagen.height;
         
         canvas.setLayer("imagen",{
                             source: imagen,
@@ -51,15 +44,15 @@ $(function() {
                             }
                         });
 
-        /*var tam = {
+        var tam = {
             width: ancho,
             height: alto
-        };*/
+        };
 
-        //canvas.attr(tam);
+        canvas.attr(tam);
 
         
-        //$("#resize").css(tam);
+        $("#resize").css(tam);
 
         redibujarCanvas();
     });

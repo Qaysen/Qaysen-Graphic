@@ -34,12 +34,6 @@ CREATE TABLE IF NOT EXISTS `imagen` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=155 ;
 
---
--- Volcado de datos para la tabla `imagen`
---
-
-INSERT INTO `imagen` (`id`, `nombre`, `ruta`, `thumbs`) VALUES
-(137, 'dsad', 'img/cha.jpg', 'img_thumbs/cha.jpg');
 
 -- --------------------------------------------------------
 
