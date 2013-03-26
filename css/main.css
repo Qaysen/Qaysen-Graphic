@@ -4,7 +4,10 @@
    Author's custom styles
    ========================================================================== */
 body {
+	margin: 0;
+	padding: 0;
 	background: #eee;
+	padding-top: 20px;
 }
 
 header h1 {

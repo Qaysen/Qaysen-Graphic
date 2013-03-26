@@ -11,14 +11,9 @@
         <meta name="viewport" content="width=device-width">
 
         <style>
-            body {
-                margin: 0px;
-                padding: 0px;
-            }
             #resize
             {
                 width:600px;
-                height: 600px;
             }
 
         </style>
@@ -49,7 +44,12 @@
                     </header>
                     <br>
                     <div class="compartir">
+                        <legend>Crea tus propios memes</legend>
+                        <p>Si quieres creas tus propios memes ingresa aqui:</p>
                         <legend>Compartelo con tus amigos</legend>
+
+                        <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+
                         <div class="control-group">
                             <label class="control-label">Registrate en la app:</label>
                             <div class="controls">
@@ -81,6 +81,7 @@
                 <div class="span8 canvas">
                     <div id="resize">
                         <img src="">
+                        <div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>
                     </div>
                 </div>
             </div>
