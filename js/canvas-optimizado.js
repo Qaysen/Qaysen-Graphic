@@ -73,9 +73,8 @@ function actualizarLista()
 
     for(i=capas.length; i>1;i--)
     {
-        filas += "<tr><td>";
-        filas += capas.length - i;
-        filas += "</td><td>";
+        filas += "<tr>";
+        filas+='<td><div class="input-prepend"><button class="btn btn-danger"><i class="icon-white icon-remove-sign"></i></button>';
         filas += "<input type='text' class='capainput'value='";
         contenido = capas[i-1].text;
         filas += contenido.substring(0,9);
@@ -83,8 +82,9 @@ function actualizarLista()
         {
             filas += "...";     
         }
-        filas+="'/>";
-        filas += '</td><td><button class="btn-danger">Eliminar</button></td><td><a class="subir-capa"><i class="icon-chevron-up"></i></a><a class="bajar-capa"><i class="icon-chevron-down"></i></a></td></tr>';
+        filas+="'/></div></td>";
+        filas+="<td></td>";
+        filas += '<td><a class="subir-capa"><i class="icon-chevron-up"></i></a><a class="bajar-capa"><i class="icon-chevron-down"></i></a></td></tr>';
     }
 
     $(".lista-objetos tbody").html(filas);

@@ -3,12 +3,6 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-.capainput
-{
-	background: none;
-}
-
 body {
 	margin: 0;
 	padding: 0;
@@ -16,6 +10,13 @@ body {
 	padding-top: 20px;
 }
 
+td{
+	padding: 0;
+	margin: 0;
+}
+table{
+
+}
 header h1 {
 	text-align: center;
 	margin: 10px 0 40px 0;

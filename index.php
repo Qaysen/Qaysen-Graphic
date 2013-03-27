@@ -59,12 +59,11 @@
                     <br>
                     <div class="lista-objetos">
                         <legend>Lista de objetos</legend>
-                        <table class="table">
+                        <table class="table" >
                           <thead>
                             <tr>
-                              <th>#</th>
-                              <th>Objeto</th>
-                              <th>Accion</th>
+                              <th>Texto</th>
+                              <th>a</th>
                               <th>Capa</th>
                             </tr>
                           </thead>
