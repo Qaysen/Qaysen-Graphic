@@ -1,15 +1,12 @@
 <?php 
     $id=$_GET['id'];
     if ($id) {
-    include('conexion.php');   
-    $query = mysql_query("select * from meme_generado where id = $id ") or die(mysql_error());
-    $row =mysql_fetch_array($query);
-    $query2 = mysql_query("select nombre from imagen where id = $row[1] ");
-    $row1=mysql_fetch_array($query2);
-    $query3 = mysql_query("select count(*) from meme_generado");
-    $row2 = mysql_fetch_array($query3);
-    if($id<=$row2[0] && $id>=1)
-    {
+        include('conexion.php');   
+        $query = mysql_query("select id_imagen,url_img_creado from meme_generado where id = $id ") or die(mysql_error());
+        $row =mysql_fetch_array($query);
+        if (!empty($row)) {
+            $query2 = mysql_query("select nombre from imagen where id = $row[0] ");
+            $row1=mysql_fetch_array($query2);
 
  ?>
 <!DOCTYPE html>
@@ -103,7 +100,7 @@
                                <?php echo $row1[0];?> 
                         </center></div>
                                             
-                        <img src="<?php echo $row[2];  ?>" >
+                        <img src="<?php echo $row[1];  ?>" >
                         <div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>
                     </div>
                 </div>
@@ -137,13 +134,14 @@
     </body>
 </html>
 <?php 
-    }else{
-        header ("Location: http://localhost/Qaysen-Graphic/404.html");
+        }
+        else{
+            header ("Location: http://localhost/Qaysen-Graphic/404.html");
+        }
     }
- }
- else{
+    else{
 
- header ("Location: http://localhost/Qaysen-Graphic/404.html");
- }
+    header ("Location: http://localhost/Qaysen-Graphic/404.html");
+    }
 
  ?>
