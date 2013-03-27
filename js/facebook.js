@@ -1,5 +1,7 @@
 $(document).on('ready',inicio);
 
+var dominio = "http://ver-novelas.com/qaysen/"
+
 function inicio()
 {
 	$('#login').on('click',comprobarLogin);
@@ -8,7 +10,7 @@ function inicio()
 	window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '520023464714856', // App ID
-	      channelUrl : '//localhost/Qaysen-Graphic/', // Channel File
+	      channelUrl : dominio, // Channel File
 	      status     : true, // check login status
 	      cookie     : true, // enable cookies to allow the server to access the session
 	      xfbml      : true  // parse XFBML
@@ -78,7 +80,7 @@ function publicarImagen(imagen)
         console.log(respuesta);
         FB.api('/photos', 'post', {
           message:mensaje,
-          url:imagen.url        
+          url:dominio+imagen.url        
         }, function(response){
 
             if (!response || response.error) {
@@ -107,8 +109,8 @@ function compartirEnMuro(imagen) {
 
             var obj = {
               method: 'feed',
-              link: 'http://localhost/appFaceGraf/post.php?id='+respuesta,
-              picture: 'http://localhost/Qaysen-Graphic/'+imagen.url,
+              link: dominio + 'post.php?id='+respuesta,
+              picture: dominio + imagen.url,
               name: imagen.nombre,
               caption: 'Imagen creada por ... ',
               description: 'Herramienta que permite crear tus propios memes'

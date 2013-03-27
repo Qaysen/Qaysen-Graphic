@@ -19,6 +19,9 @@
               <li class="">
                 <a href="subir.php">Subir Imagenes</a>
               </li>
+              <li class="">
+                <a href="mostrartabla.php">Mostrar Imagenes</a>
+              </li>
             </ul>
           </div>
         </div>
