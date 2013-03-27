@@ -80,7 +80,7 @@ function publicarImagen(imagen)
         console.log(respuesta);
         FB.api('/photos', 'post', {
           message:mensaje,
-          url:imagen.url        
+          url:dominio+imagen.url        
         }, function(response){
 
             if (!response || response.error) {
