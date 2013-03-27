@@ -43,7 +43,7 @@
                     <div class="agregar-texto">
                         <fieldset>
                             <legend>Agregar Texto</legend>
-                            <input type="text" placeholder="Texto a agregar" id= "texto">
+                            <input type="text" placeholder="Texto a agregar" id= "texto" >
                             <button type="submit" class="btn" id= "dibujarTexto">Agregar texto</button>
                         </fieldset>
                     </div>

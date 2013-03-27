@@ -76,13 +76,14 @@ function actualizarLista()
         filas += "<tr><td>";
         filas += capas.length - i;
         filas += "</td><td>";
-        contenido = capas[i-1].data.contenido;
+        filas += "<input type='text' class='capainput'value='";
+        contenido = capas[i-1].text;
         filas += contenido.substring(0,9);
         if(contenido.length >10)
         {
             filas += "...";     
         }
-        
+        filas+="'/>";
         filas += '</td><td><button class="btn-danger">Eliminar</button></td><td><a class="subir-capa"><i class="icon-chevron-up"></i></a><a class="bajar-capa"><i class="icon-chevron-down"></i></a></td></tr>';
     }
 
@@ -98,6 +99,34 @@ function actualizarLista()
 
     });
 
+    $(".capainput").on("focus",function () {
+        fila = $(this).parents("tr:first");
+        indice = capas.length - fila.index()-1;  
+        $(this).val(canvas.getLayer(indice).text);      
+        $(this).on("keyup",function() {
+            canvas.setLayer(indice,
+                {
+                    text:$(this).val()
+                }
+            )
+            redibujarCanvas();
+        })
+    })
+
+    $(".capainput").on("blur",function () {
+        fila = $(this).parents("tr:first");
+        indice = capas.length - fila.index()-1;  
+
+        contenido = canvas.getLayer(indice).text;
+        if(contenido.length >10)
+        {
+            contenido = contenido.substring(0,9);
+            contenido += "...";     
+        }
+
+        $(this).val(contenido);        
+    })
+
     $(".subir-capa").on("click",function(){
         fila = $(this).parents("tr:first");
         indice = capas.length - fila.index()-1;            
@@ -111,6 +140,7 @@ function actualizarLista()
             redibujarCanvas();
         }
     });
+
 
     $(".bajar-capa").on("click",function(){
         fila = $(this).parents("tr:first");
@@ -136,12 +166,14 @@ function dibujarTexto()
         draggable: true,
         group: "texto",
         method: "drawText",
-        fillStyle: "#9cf",
-        strokeStyle: "#25a",
-        strokeWidth: 0,
+        fillStyle: "#fff",
+        strokeStyle: "#000",
+        strokeWidth: 2,
         x: 20, y: 20,
+        shadowColor: "#000",
+        shadowBlur: 6,
+        font: "36pt Arial Black, sans-serif",
         fromCenter: false,
-        font: "36pt Verdana",
         background: "#000",
         click: function(layer) {
             capaActual = layer.index;
@@ -167,29 +199,35 @@ function dibujarTexto()
     redibujarCanvas();
 }
 
+var publicado = false;
+var compartido = false;
+
 function generarImagen()
 {
     var dataURL = '';
     var temp_dataURL = canvas.getCanvasImage("png");
+    console.log(compartido);
     var id = $(this).attr("id");
     try{
     if(dataURL !== temp_dataURL)
     {
+        console.log(dataURL !== temp_dataURL);
         dataURL = temp_dataURL;
-        
-        crearImagen(dataURL,function(){
+        console.log(dataURL !== temp_dataURL);
+
+        crearImagen(temp_dataURL,function(){
 
             if(id === "descargar")
             {
                 window.location.href =  "download.php?path="+ fondoCanvas["url"];
             }
-            else if(id === "publicarImagen")
+            else if(id === "publicarImagen" && !publicado)
             {
-                publicarImagen(fondoCanvas);
+                publicado = publicarImagen(fondoCanvas);
             }
-            else if(id === "compartir")
+            else if(id === "compartir" && !compartido)
             {
-                compartirEnMuro(fondoCanvas);
+                compartido = compartirEnMuro(fondoCanvas);
             }
         });
     }

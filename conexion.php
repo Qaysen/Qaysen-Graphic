@@ -1,7 +1,7 @@
 <?php
 	$dbhost="localhost"; 
-	$dbuser="edwinpgm1"; 
-	$dbpass="melquiades"; 
+	$dbuser="root"; 
+	$dbpass="123"; 
 
 	$db="memes";
 
