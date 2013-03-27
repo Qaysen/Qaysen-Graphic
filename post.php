@@ -1,14 +1,14 @@
 <?php 
-    $id=$_GET['id'];
-    if ($id) {
-    include('conexion.php');   
-    $query = mysql_query("select * from meme_generado where id = $id ") or die(mysql_error());
-    $row =mysql_fetch_array($query);
-    $query2 = mysql_query("select nombre from imagen where id = $row[1] ");
-    $row1=mysql_fetch_array($query2);
-    $query3 = mysql_query("select count(*) from meme_generado");
-    $row2 = mysql_fetch_array($query3);
-    if($id<=$row2[0] && $id>=1)
+    if ( !empty($_GET['id']) ) {
+        $id=$_GET['id'];
+        include('conexion.php');   
+        $query = mysql_query("select * from meme_generado where id = $id ");
+        $row =mysql_fetch_array($query);
+        $query2 = mysql_query("select * from imagen where id = $row[1] ");
+        $row1=mysql_fetch_array($query2);
+        $query3 = mysql_query("select count(*) from meme_generado");
+        $row2 = mysql_fetch_array($query3);
+        if($id)
     {
 
  ?>
@@ -138,7 +138,7 @@
 </html>
 <?php 
     }else{
-        header ("Location: http://localhost/Qaysen-Graphic/404.html");
+        Header ("Location: http://localhost/Qaysen-Graphic/404.html");
     }
  }
  else{
