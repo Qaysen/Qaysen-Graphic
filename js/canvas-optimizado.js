@@ -5,6 +5,7 @@ function inicio()
 	canvas = $("#myCanvas");
 	$("#explorador img").on('click', imagenFondo);
     $("#dibujarTexto").on("click", dibujarTexto);
+    $(".genImagen").on("click", generarImagen);
     colorFondo();
 }
 
@@ -162,4 +163,57 @@ function dibujarTexto()
 
     actualizarLista();
     redibujarCanvas();
+}
+
+function generarImagen()
+{
+    var dataURL = '';
+    var imagenActual;
+    var temp_dataURL = canvas.getCanvasImage("png");
+    var id = $(this).attr("id");
+
+    if(dataURL !== temp_dataURL)
+    {
+        dataURL = temp_dataURL;
+        
+        crearImagen(dataURL,function(){
+            imagenActual = $("#url").html();
+
+            if(id === "descargar")
+            {
+                window.location.href =  "download.php?path="+ imagenActual;
+            }
+            else if(id === "publicarImagen")
+            {
+                console.log(imagenActual);
+                publicarImagen(imagenActual);
+            }
+        });
+    }
+    else
+    {
+        if(id === "descargar")
+            {
+                window.location.href =  "download.php?path="+ imagenActual;
+            }
+        else if(id === "publicarImagen")
+        {
+            console.log("publicar");
+            publicarImagen(imagenActual);
+        }
+    }
+}
+
+function crearImagen(url,callback) {
+    $.ajax({
+        type: 'POST',
+        url: 'save.php',
+        data: {data:url},
+        success: function(archivo) {
+            $("#url").html(archivo);
+            callback();
+        },
+        error: function(archivo) {
+        }
+    });
 }
