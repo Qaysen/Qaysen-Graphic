@@ -199,14 +199,6 @@ function generarImagen()
         {
             window.location.href =  "download.php?path="+ imagenActual;
         }
-        else if(id === "publicarImagen")
-        {
-            publicarImagen(fondoCanvas);
-        }
-        else if(id === "compartir")
-        {
-            compartirEnMuro(fondoCanvas);
-        }
     }
     }
     finally{

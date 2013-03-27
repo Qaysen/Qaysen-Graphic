@@ -29,8 +29,7 @@
         <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
         <script src="js/jcanvas.min.js"></script>
-        <!--<script src="js/canvas-una-imagen.js"></script>-->
-        <script src="js/canvas-optimizado.js"></script>
+        <script src="js/canvas-una-imagen.js"></script>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -46,9 +45,11 @@
             <!-- Example row of columns -->
             <div class="row main">
                 <div class="span4 herramientas">
+
                     <header>
                         <h1>Qaysen Graphic</h1>
                     </header>
+
                     <div class="agregar-texto">
                         <fieldset>
                             <legend>Agregar Texto</legend>
@@ -83,7 +84,7 @@
                         <div class="control-group">
                             <label class="control-label">Compartir por Facebook:</label>
                             <div class="controls">
-                              <input class="genImagen uibutton confirm" type="submit" value="Compartir" id="compartir">
+                              <input class="uibutton confirm" type="submit" value="Compartir" id="compartir">
                             </div>
                         </div>
                         <div class="control-group">
@@ -110,107 +111,28 @@
             </div>
 
         </div> <!-- /container -->
-        <div class="imagenes uibutton-toolbar" >
-            <article id="slider">
-            
-                <!-- Slider Setup -->
-            
-                <input checked="" type="radio" name="slider" id="slide1" selected="true">
-                <input type="radio" name="slider" id="slide2" selected="false">
-                <input type="radio" name="slider" id="slide3" selected="false">
-                <input type="radio" name="slider" id="slide4" selected="false">
-                <input type="radio" name="slider" id="slide5" selected="false">
-            
-            
-                <!-- The Slider -->
-                
-                <div id="slides">
-                
-                    <div id="overflow">
-                    
-                        <div class="inner">
-                        
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/CouldDragonByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/MountainFortByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/MountainOutpostByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/CliffsByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/HillFortByBjzaba.png">
-                            </article>
-                            
-                        </div> <!-- .inner -->
-                        
-                    </div> <!-- #overflow -->
-                
-                </div> <!-- #slides -->
-            
-            
-                <!-- Controls and Active Slide Display -->
-            
-                <div id="controls">
-
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
-                
-                </div> <!-- #controls -->
-                
-                <div id="active">
-
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
-                    
-                </div> <!-- #active -->
-            
-            </article>
-
+        <div class="row imagenes uibutton-toolbar" id="explorador">
             <div class="mostrar-mas">
 
             </div>
             <div class="explorador" id="explorador">
                 <ul>
-                
-                    <?php 
-
-                    include('conexion.php');
-                          
-                            $query="SELECT * FROM imagen ORDER BY nombre DESC";
-                            if($r=mysql_query($query,$dbc)){
-
-                                while($row=mysql_fetch_array($r)){
-    
-                               echo   "<li><img id='{$row['nombre']}' value='{$row['id']}' src='{$row['thumbs']}' ></li>"; 
-                   
-
-                            }
-                        }
-                        else {
-                            echo "no se ha hecho consula";
-                        }
-                        mysql_close();
-
-
-                        ?>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150" id="dsadasdasdas"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
+                    <li><img src="http://farm5.static.flickr.com/4106/5041147401_c77e28cf3d_s.jpg" width="150"></li>
                 </ul>
             </div>
-          
+            <div class="categorias uibutton-toolbar">
+
+            </div>
         </div>
 
         <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>

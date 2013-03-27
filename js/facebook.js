@@ -102,9 +102,12 @@ function compartirEnMuro(imagen) {
         url: 'nuevaimagen.php',
         data: imagen,
         success: function(respuesta) {
+            
+            respuesta = respuesta.replace(/(\r\n|\n|\r)/gm,"");
+
             var obj = {
               method: 'feed',
-              link: 'http://localhost/appFaceGraf/vista.php?id='+respuesta,
+              link: 'http://localhost/appFaceGraf/post.php?id='+respuesta,
               picture: 'http://localhost/appFaceGraf/'+imagen.url,
               name: imagen.nombre,
               caption: 'Imagen creada por ... ',
@@ -112,14 +115,18 @@ function compartirEnMuro(imagen) {
             };
 
             FB.ui(obj,function(response) {
+                console.log(response);
                 if (!response || response.error)
                 {
-                  console.log(response.error);
+                  console.log("cancelado");
                 } else 
                 {
+                    console.log(typeof(respuesta));
+                    respuesta = parseInt(respuesta);
+                    console.log(typeof(respuesta));
                   console.log(response.id);
 
-                  $.post("agregarid.php",{id:respuesta, faceid:response.id});
+                  $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
                 }
             });  
         },
