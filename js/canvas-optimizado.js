@@ -136,12 +136,14 @@ function dibujarTexto()
         draggable: true,
         group: "texto",
         method: "drawText",
-        fillStyle: "#9cf",
-        strokeStyle: "#25a",
-        strokeWidth: 0,
+        fillStyle: "#fff",
+        strokeStyle: "#000",
+        strokeWidth: 2,
         x: 20, y: 20,
+        shadowColor: "#000",
+        shadowBlur: 6,
+        font: "36pt Arial Black, sans-serif",
         fromCenter: false,
-        font: "36pt Verdana",
         background: "#000",
         click: function(layer) {
             capaActual = layer.index;
@@ -167,29 +169,35 @@ function dibujarTexto()
     redibujarCanvas();
 }
 
+var publicado = false;
+var compartido = false;
+
 function generarImagen()
 {
     var dataURL = '';
     var temp_dataURL = canvas.getCanvasImage("png");
+    console.log(compartido);
     var id = $(this).attr("id");
     try{
     if(dataURL !== temp_dataURL)
     {
+        console.log(dataURL !== temp_dataURL);
         dataURL = temp_dataURL;
-        
-        crearImagen(dataURL,function(){
+        console.log(dataURL !== temp_dataURL);
+
+        crearImagen(temp_dataURL,function(){
 
             if(id === "descargar")
             {
                 window.location.href =  "download.php?path="+ fondoCanvas["url"];
             }
-            else if(id === "publicarImagen")
+            else if(id === "publicarImagen" && !publicado)
             {
-                publicarImagen(fondoCanvas);
+                publicado = publicarImagen(fondoCanvas);
             }
-            else if(id === "compartir")
+            else if(id === "compartir" && !compartido)
             {
-                compartirEnMuro(fondoCanvas);
+                compartido = compartirEnMuro(fondoCanvas);
             }
         });
     }

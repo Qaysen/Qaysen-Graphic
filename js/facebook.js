@@ -118,7 +118,7 @@ function compartirEnMuro(imagen) {
                 console.log(response);
                 if (!response || response.error)
                 {
-                  console.log("cancelado");
+                  return false;
                 } else 
                 {
                     console.log(typeof(respuesta));
@@ -127,6 +127,7 @@ function compartirEnMuro(imagen) {
                   console.log(response.id);
 
                   $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
+                  return true;
                 }
             });  
         },

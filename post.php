@@ -8,7 +8,7 @@
     $row1=mysql_fetch_array($query2);
     $query3 = mysql_query("select count(*) from meme_generado");
     $row2 = mysql_fetch_array($query3);
-    if($id<=$row2[0] && $id>=1)
+    if(mysql_num_rows($query))
     {
 
  ?>
