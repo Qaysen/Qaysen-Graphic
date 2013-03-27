@@ -1,13 +1,23 @@
 <?PHP
+    include("ChromePhp.php");
+
     $id = $_POST["id"];
-    $ruta = $_POST["ruta"];
+    $ruta = $_POST["url"];
 
-    include_once(conexion.php);
+    include_once("conexion.php");
+    ChromePhp::log($id);
+    ChromePhp::log($ruta);
+    mysql_query("INSERT INTO meme_generado (id_imagen, url_img_creado) VALUES ('$id', '$ruta')",$dbc)  or die(mysql_error());
 
-    mysqli_query($dbc,"INSERT INTO meme_generado (id_imagen,url_imagen_creado) VALUES
-        ('$id', '$ruta')");
+    $idag = mysql_insert_id($dbc);
+    ChromePhp::log($idag);
 
-    echo mysqli_insert_id($dbc);
+    echo $idag;    
     
-    mysqli_close($dbc);  
+    mysql_close($dbc);  
 ?>
+
+
+
+
+

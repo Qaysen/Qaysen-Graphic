@@ -8,6 +8,7 @@
 <body>
 <?
 include('../conexion.php');
+
 if($_SESSION)
 {
 include ('header.php');

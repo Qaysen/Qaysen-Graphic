@@ -33,7 +33,7 @@
 		</form>
 		<hr>
 	<?php
-	}else{
+	}else{		
 		Header("Location: admin.php");
 	}
 	?>	

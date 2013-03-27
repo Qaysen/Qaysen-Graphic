@@ -1,10 +1,16 @@
 <?php 
     $id=$_GET['id'];
+    if ($id) {
     include('conexion.php');   
     $query = mysql_query("select * from meme_generado where id = $id ") or die(mysql_error());
-    $row=mysql_fetch_array($query);
+    $row =mysql_fetch_array($query);
     $query2 = mysql_query("select nombre from imagen where id = $row[1] ");
     $row1=mysql_fetch_array($query2);
+    $query3 = mysql_query("select count(*) from meme_generado");
+    $row2 = mysql_fetch_array($query3);
+    if($id<=$row2[0] && $id>=1)
+    {
+
  ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -97,7 +103,7 @@
                                <?php echo $row1[0];?> 
                         </center></div>
                                             
-                        <img src="<?php $row[2];  ?>" >
+                        <img src="<?php echo $row[2];  ?>" >
                         <div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>
                     </div>
                 </div>
@@ -130,3 +136,14 @@
         <div id="url" hidden><div>
     </body>
 </html>
+<?php 
+    }else{
+        header ("Location: http://localhost/Qaysen-Graphic/404.html");
+    }
+ }
+ else{
+
+ header ("Location: http://localhost/Qaysen-Graphic/404.html");
+ }
+
+ ?>
