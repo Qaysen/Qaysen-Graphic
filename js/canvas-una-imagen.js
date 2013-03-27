@@ -1,6 +1,6 @@
 $(function() {
     canvas = $("#myCanvas");
-    
+    var fondoCanvas;
     //Redibuja el canvas, util para funciones que requieren
     //redibujado como cuando se elimina una imagen o se redimensiona
     //el canvas
@@ -28,7 +28,9 @@ $(function() {
 
     //Esto sucede al dar click en una imagen del explorador
     $("#explorador img").on("click", function(){
-
+        fondoCanvas.id = $(this).attr("value");
+        fondoCanvas.nombre  = $(this).attr("id");
+        console.log(fondoCanvas);
         imagen = new Image();
         var src = $(this).attr("src").replace("_thumbs","");
         imagen.src = src;
@@ -124,12 +126,14 @@ $(function() {
             draggable: true,
             group: "texto",
             method: "drawText",
-            fillStyle: "#9cf",
-            strokeStyle: "#25a",
+            fillStyle: "#fff",
+            strokeStyle: "#000",
             strokeWidth: 0,
             x: 20, y: 20,
+            shadowColor: "#000",
+            shadowBlur: 6,
             fromCenter: false,
-            font: "36pt Verdana",
+            font: "36pt Arial Black, sans-serif",
             background: "#000",
             click: function(layer) {
                 capaActual = layer.index;
@@ -179,6 +183,11 @@ $(function() {
                     console.log("publicar");
                     publicarImagen(imagenActual);
                 }
+                else if(id === "CompartirEnMiMuro")
+                {
+                    console.log("");
+                    CompartirEnMiMuro(fondoCanvas, imagenActual);
+                }
             });
         }
         else
@@ -191,6 +200,10 @@ $(function() {
             {
                 console.log("publicar");
                 publicarImagen(imagenActual);
+            }
+            else if(id == "CompartirEnMiMuro")
+            {
+                CompartiEnMiMuro(fondoCanvas, imagenActual);
             }
         }
     });
@@ -208,6 +221,20 @@ $(function() {
             }
         });
     }
+    // $("#algo").on("click",function(){
+    //     console.log(":D");
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: 'nuevaimagen.php',
+    //         data:{
+    //             ruta:"imagen",
+    //             cat:137
+    //         },
+    //         success: function(data){
+    //             console.log(data);   
+    //         }
 
+    //         });
+    // });
 });
 

@@ -43,7 +43,9 @@
         <![endif]-->
 
         <!-- Logo -->
-
+                            <button id="algo">
+                        asd
+                    </button>
         <header>
             <h1>Qaysen Graphic</h1>
         </header>

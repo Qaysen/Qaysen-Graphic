@@ -70,7 +70,8 @@ function publicarImagen(rutaImagen)
 function publicarMuro(fondo, imagen)
 {
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
-  $.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},
+  $.post("nuevaimagen.php",{ruta:imagen, cat:fondo.id}).
+    success(
     function () {
       FB.api('/photos', 'post', {
         message:mensaje,
@@ -81,18 +82,18 @@ function publicarMuro(fondo, imagen)
             console.log(response.error);
           } else {
             console.log(response.id);
-            $.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
+            $.post("agregarid.php",{id:respuesta, faceid:response.id});
           }
 
       });  
-    }
+    });
 }
 
 function CompartirEnMiMuro(fondo,imagen) {
 
-  nuevaImagen(fondo,imagen)
-  $.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},
-
+console.log(fondo);
+  $.post("nuevaimagen.php",{ruta:imagen, cat:fondo.id}).
+  success(
   function (respuesta) {
     var obj = {
       method: 'feed',
@@ -108,8 +109,10 @@ function CompartirEnMiMuro(fondo,imagen) {
           console.log(response.error);
         } else {
           console.log(response.id);
-          $.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
+          $.post("agregarid.php",{id:respuesta, faceid:response.id});
+        }
     });  
-  })
+
+  });
 	
 }

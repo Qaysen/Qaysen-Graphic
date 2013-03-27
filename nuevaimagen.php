@@ -1,13 +1,13 @@
 <?PHP
-    $id = $_POST["id"];
+    $id = $_POST["cat"];
     $ruta = $_POST["ruta"];
 
-    include_once(conexion.php);
+    include_once("conexion.php");
 
-    mysqli_query($dbc,"INSERT INTO meme_generado (id_imagen,url_imagen_creado) VALUES
-        ('$id', '$ruta')");
+    mysql_query("INSERT INTO meme_generado(id_imagen,url_img_creado) 
+        values('$id', '$ruta')",$dbc)  or die("problemas".mysql_error());
 
-    echo mysqli_insert_id($dbc);
+    echo mysql_insert_id($dbc);
     
     mysqli_close($dbc);  
 ?>
