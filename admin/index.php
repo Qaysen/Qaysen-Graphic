@@ -1,9 +1,9 @@
 <?php 
-	if(!isset($_SESSION))
-	{
+if(!isset($_SESSION))
+{
 		?>
-<!DOCTYPE html>
-<html lang="es">
+	<!DOCTYPE html>
+	<html lang="es">
 	<head>
 		<title>Logearse</title>
 		<meta charset="utf-8" />
@@ -36,7 +36,7 @@
 		include('footer.php')
 		 ?>
 	</body>
-</html>
+	</html>
 		<?php
 	}
 	else
