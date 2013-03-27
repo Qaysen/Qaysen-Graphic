@@ -1,3 +1,4 @@
+
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -6,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./index.php">Memes - Administración</a>
+          <a class="brand" href="./admin.php">Memes - Administración</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="">
@@ -15,11 +16,11 @@
               <li class="">
                 <a href="registro.php">Registrar usuario</a>
               </li>
-              <li class="active">
-                <a href="../subirimagenes.php">Subir Imagenes</a>
+              <li class="">
+                <a href="subir.php">Subir Imagenes</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-    </div>
+</div>
