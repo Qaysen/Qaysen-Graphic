@@ -33,8 +33,8 @@
         <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
         <script src="js/jcanvas.min.js"></script>
-        <script src="js/canvas-una-imagen.js"></script>
-        <!--<script src="js/canvas-optimizado.js"></script>-->
+        <!--<script src="js/canvas-una-imagen.js"></script>-->
+        <script src="js/canvas-optimizado.js"></script>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -90,7 +90,7 @@
                         <div class="control-group">
                             <label class="control-label">Compartir por Facebook:</label>
                             <div class="controls">
-                              <input class="uibutton confirm" type="submit" value="Compartir" id="compartir">
+                              <input class="genImagen uibutton confirm" type="submit" value="Compartir" id="compartir">
                             </div>
                         </div>
                         <div class="control-group">

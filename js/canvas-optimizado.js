@@ -3,6 +3,7 @@ $(document).on('ready', inicio);
 function inicio()
 {
 	canvas = $("#myCanvas");
+    fondoCanvas = {};
 	$("#explorador img").on('click', imagenFondo);
     $("#dibujarTexto").on("click", dibujarTexto);
     $(".genImagen").on("click", generarImagen);
@@ -12,7 +13,6 @@ function inicio()
 function redibujarCanvas()
 {
 	canvas.drawLayers();
-	console.log(canvas);
 }
 
 function colorFondo()
@@ -32,6 +32,8 @@ function colorFondo()
 
 function imagenFondo()
 {
+    fondoCanvas["id"] = $(this).attr("value");
+    fondoCanvas.nombre  = $(this).attr("id");
 	imagen = new Image();
     var src = $(this).attr("src").replace("_thumbs","");
     imagen.src = src;
@@ -168,40 +170,49 @@ function dibujarTexto()
 function generarImagen()
 {
     var dataURL = '';
-    var imagenActual;
     var temp_dataURL = canvas.getCanvasImage("png");
     var id = $(this).attr("id");
-
+    try{
     if(dataURL !== temp_dataURL)
     {
         dataURL = temp_dataURL;
         
         crearImagen(dataURL,function(){
-            imagenActual = $("#url").html();
 
             if(id === "descargar")
             {
-                window.location.href =  "download.php?path="+ imagenActual;
+                window.location.href =  "download.php?path="+ fondoCanvas["url"];
             }
             else if(id === "publicarImagen")
             {
-                console.log(imagenActual);
-                publicarImagen(imagenActual);
+                publicarImagen(fondoCanvas);
+            }
+            else if(id === "compartir")
+            {
+                compartirEnMuro(fondoCanvas);
             }
         });
     }
     else
     {
         if(id === "descargar")
-            {
-                window.location.href =  "download.php?path="+ imagenActual;
-            }
+        {
+            window.location.href =  "download.php?path="+ imagenActual;
+        }
         else if(id === "publicarImagen")
         {
-            console.log("publicar");
-            publicarImagen(imagenActual);
+            publicarImagen(fondoCanvas);
+        }
+        else if(id === "compartir")
+        {
+            compartirEnMuro(fondoCanvas);
         }
     }
+    }
+    finally{
+        redibujarCanvas();
+    }
+
 }
 
 function crearImagen(url,callback) {
@@ -211,6 +222,7 @@ function crearImagen(url,callback) {
         data: {data:url},
         success: function(archivo) {
             $("#url").html(archivo);
+            fondoCanvas.url = archivo;
             callback();
         },
         error: function(archivo) {

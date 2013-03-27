@@ -2,7 +2,6 @@ $(document).on('ready',inicio);
 
 function inicio()
 {
-	$('#compartir').on('click',CompartirEnMiMuro);
 	$('#login').on('click',comprobarLogin);
 
 	//Inicializamos la APP con FB
@@ -44,79 +43,88 @@ function login()
     }, {scope: 'publish_actions,email, publish_stream'});
 }
 
-function publicarImagen(rutaImagen)
-{   
-  FB.getLoginStatus(function(response) 
-  {
-    if(response.status === 'connected') 
-    {
-      var uid = response.authResponse.userID;
-      var accessToken = response.authResponse.accessToken;
-
-      publicarMuro(rutaImagen);
-    }
-    else if (response.status === 'not_authorized') 
-    {
-      alert("Haz click en Login");
-    }
-    else 
-    {
-      alert("Haz click en Login");
-    }
-  });
-
-};
-
-function publicarMuro(imagen)
+function verificarLogin(funcion)
 {
-	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
-  $.post("nuevaimagen.php",{ruta:imagen, cat:fondo.id}).
-    success(
-    function () {
-      FB.api('/photos', 'post', {
-        message:mensaje,
-        url:imagen        
-      }, function(response){
-
-          if (!response || response.error) {
-            console.log(response.error);
-          } else {
-            console.log(response.id);
-            $.post("agregarid.php",{id:respuesta, faceid:response.id});
-          }
-
-      });  
-    });
+    return function(){
+        FB.getLoginStatus(function(response){
+            if(response.status === 'connected') 
+            {
+                console.log("verificado");
+                var uid = response.authResponse.userID;
+                var accessToken = response.authResponse.accessToken;
+                funcion();
+            }
+            else if (response.status === 'not_authorized') 
+            {
+                alert("Haz click en Login");
+            }
+            else 
+            {
+            alert("Haz click en Login");
+            }
+            });
+    }
 }
 
-function CompartirEnMiMuro(fondo,imagen) {
+publicarImagen = verificarLogin(publicarImagen(arguments));
+function publicarImagen(imagen)
+{
+	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
+  $.ajax({
+    type: 'POST',
+    url: 'nuevaimagen.php',
+    data: imagen,
+    success: function(respuesta) {
+        console.log(respuesta);
+        FB.api('/photos', 'post', {
+          message:mensaje,
+          url:imagen.url        
+        }, function(response){
 
-console.log(fondo);
-  $.post("nuevaimagen.php",{ruta:imagen, cat:fondo.id}).
-  success(
-  function (respuesta) {
+            if (!response || response.error) {
+              console.log(response.error);
+            } else {
+              console.log(response.id);
+              $.post("agregarid.php",{id:respuesta, faceid:response.id});
+            }
 
-    var obj = {
-      method: 'feed',
-      link: 'http://localhost/Qaysen-Graphic/vista.php?id='+respuesta,
-      picture: 'http://localhost/Qaysen-Graphic/img/'+imagen,
-      name: fondo.nombre,
-      caption: 'Imagen creada por ... ',
-      description: 'Herramienta que permite crear tus propios memes'
-    };
+        }); 
+    },
+    error: function(archivo) {
+        console.log("error");
+    }
+});
+}
 
-    FB.ui(obj,function(response) {
-        if (!response || response.error)
-        {
-          console.log(response.error);
-        } else 
-        {
-          console.log(response.id);
+function compartirEnMuro(imagen) {
+    $.ajax({
+        type: 'POST',
+        url: 'nuevaimagen.php',
+        data: imagen,
+        success: function(respuesta) {
+            var obj = {
+              method: 'feed',
+              link: 'http://localhost/appFaceGraf/vista.php?id='+respuesta,
+              picture: 'http://localhost/appFaceGraf/'+imagen.url,
+              name: imagen.nombre,
+              caption: 'Imagen creada por ... ',
+              description: 'Herramienta que permite crear tus propios memes'
+            };
 
-          $.post("agregarid.php",{id:respuesta, faceid:response.id});
+            FB.ui(obj,function(response) {
+                if (!response || response.error)
+                {
+                  console.log(response.error);
+                } else 
+                {
+                  console.log(response.id);
+
+                  $.post("agregarid.php",{id:respuesta, faceid:response.id});
+                }
+            });  
+        },
+        error: function(archivo) {
+            console.log("error");
         }
-    });  
-
-  });
-	
+    });
 }
