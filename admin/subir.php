@@ -14,11 +14,22 @@ if (!isset($_SESSION['usuario'])) {
 		</head>
 		<body>
 		<?php include('header.php'); ?>
-		<br /><br/><br />
-		<form id="form1" name="form1" method="post" action="subir.php" enctype="multipart/form-data">
-			Ingrese nombre : <input type="text" name="nombre"><br>
-			Subir archivo : <input name="imagen" type="file"/><br>
-			<input type="submit" value="enviar imagenes" style="margin-bottom:10px;"> 
+		<br>
+		<br>
+		<h3>Subir imagen :</h3>
+		<hr>
+		<form id="form1" class="form-horizontal" name="form1" method="post" action="subir.php" enctype="multipart/form-data">
+			<div class="control-group">
+				<label class="control-label" >Ingrese nombre :</label> 
+				<div class="controls"><input type="text" size="25" name="nombre" placeholder="Nombre de imagen"></div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" >Elegir archivo :</label> 
+				<div class="controls"><input name="imagen" type="file"/></div>
+			</div>
+			<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Subir Imagen</button>
+			</div>
 		</form>
 		<?php if ($_POST)
 			{

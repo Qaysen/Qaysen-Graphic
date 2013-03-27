@@ -83,7 +83,7 @@
                         <div class="control-group">
                             <label class="control-label">Compartir por Facebook:</label>
                             <div class="controls">
-                              <input class="uibutton confirm" type="submit" value="Compartir" id="compartir">
+                              <input class="genImagen uibutton confirm" type="submit" value="Compartir" id="compartir">
                             </div>
                         </div>
                         <div class="control-group">
@@ -110,106 +110,47 @@
             </div>
 
         </div> <!-- /container -->
-        <div class="imagenes uibutton-toolbar" >
-            <article id="slider">
-            
-                <!-- Slider Setup -->
-            
-                <input checked="" type="radio" name="slider" id="slide1" selected="true">
-                <input type="radio" name="slider" id="slide2" selected="false">
-                <input type="radio" name="slider" id="slide3" selected="false">
-                <input type="radio" name="slider" id="slide4" selected="false">
-                <input type="radio" name="slider" id="slide5" selected="false">
+        <div class="imagenes uibutton-toolbar" id="explorador">
+           
+
+            <article id="slider">           
+                
             
             
                 <!-- The Slider -->
-                
+                 
                 <div id="slides">
-                
-                    <div id="overflow">
+                        <div id="mostrar-menos">
+
+                        </div>
                     
                         <div class="inner">
                         
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/CouldDragonByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/MountainFortByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/MountainOutpostByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/CliffsByBjzaba.png">
-                            </article>
-                            
-                            <article>
-                                <img src="http://csscience.com/responsiveslidercss3/HillFortByBjzaba.png">
-                            </article>
+                            <?php 
+
+                            include('conexion.php');
+                            $query="SELECT * FROM imagen ORDER BY nombre DESC";
+                            if($r=mysql_query($query,$dbc)){
+                            while($row=mysql_fetch_array($r)){
+                            echo   "<article><img id='{$row['nombre']}' value='{$row['id']}' src='{$row['thumbs']}' ></article>"; 
+                                }
+                            }
+                            else {
+                                echo "no se ha hecho consula";
+                            }
+                                mysql_close();
+                            ?>
                             
                         </div> <!-- .inner -->
-                        
-                    </div> <!-- #overflow -->
-                
+                       
                 </div> <!-- #slides -->
             
-            
-                <!-- Controls and Active Slide Display -->
-            
-                <div id="controls">
-
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
                 
-                </div> <!-- #controls -->
-                
-                <div id="active">
-
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
-                    
-                </div> <!-- #active -->
             
             </article>
 
-            <div class="mostrar-mas">
+            
 
-            </div>
-            <div class="explorador" id="explorador">
-                <ul>
-                
-                    <?php 
-
-                    include('conexion.php');
-                          
-                            $query="SELECT * FROM imagen ORDER BY nombre DESC";
-                            if($r=mysql_query($query,$dbc)){
-
-                                while($row=mysql_fetch_array($r)){
-    
-                               echo   "<li><img id='{$row['nombre']}' value='{$row['id']}' src='{$row['thumbs']}' ></li>"; 
-                   
-
-                            }
-                        }
-                        else {
-                            echo "no se ha hecho consula";
-                        }
-                        mysql_close();
-
-
-                        ?>
-                </ul>
-            </div>
           
         </div>
 
@@ -223,7 +164,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>-->
-
+        
         <script src="js/main.js"></script>
         <script type="text/javascript">
             (function(d, debug){

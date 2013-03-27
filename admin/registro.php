@@ -41,8 +41,8 @@
 	   			</div>
 	  		</div>
 	  		<div class="control-group">
-	  			<div class="controls">
-	  				<input type="submit" name="submit"  class="btn" value="Registrar">
+	  			<div class="form-actions">
+	  				<button type="submit" name="submit"  class="btn btn-primary" > Registrar usuario </button>
 	  			</div>
 	  		</div>
 		</form>
