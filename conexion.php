@@ -1,6 +1,6 @@
 <?php
 	$dbhost="localhost"; 
-	$dbuser="root"; 
+	$dbuser="edwinpgm1"; 
 	$dbpass="melquiades"; 
 
 	$db="memes";
