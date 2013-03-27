@@ -67,7 +67,7 @@ function publicarImagen(rutaImagen)
 
 };
 
-function publicarMuro(fondo, imagen)
+function publicarMuro(imagen)
 {
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
   $.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},

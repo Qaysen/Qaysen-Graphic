@@ -32,12 +32,17 @@ $(function() {
         imagen = new Image();
         var src = $(this).attr("src").replace("_thumbs","");
         imagen.src = src;
-        var ancho = imagen.width;
-        var alto = imagen.height;
+        var ancho = canvas.attr('width');
+        var altoImagen = imagen.height;
+
+        var porcentaje = ancho/imagen.width;
+
+        var altoCanvas = porcentaje*altoImagen;
         
         canvas.setLayer("imagen",{
                             source: imagen,
                             x:0, y:0,
+                            width:ancho, height: altoCanvas,
                             fromCenter: false,
                             onLoad: function(layer){
                                 $(this).drawLayers();
@@ -46,7 +51,7 @@ $(function() {
 
         var tam = {
             width: ancho,
-            height: alto
+            height: altoCanvas
         };
 
         canvas.attr(tam);
