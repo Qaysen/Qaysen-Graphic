@@ -32,36 +32,36 @@ function colorFondo()
 
 function imagenFondo()
 {
-	imagen = new Image();
+    imagen = new Image();
     var src = $(this).attr("src").replace("_thumbs","");
     imagen.src = src;
-    var ancho = canvas.attr('width');
-    var altoImagen = imagen.height;
+    imagen.onload = function(){
+        ancho = canvas.attr('width');
+        alto = imagen.height;
+        
+        var porcentaje = ancho/imagen.width;
+        var altoCanvas = porcentaje*alto;
+        
+        canvas.setLayer("imagen",{
+                            source: imagen,
+                            x:0, y:0,
+                            width:ancho, height: altoCanvas,
+                            fromCenter: false,
+                            onLoad: function(layer){
+                                $(this).drawLayers();
+                            }
+                        });
 
-    var porcentaje = ancho/imagen.width;
+        var dimensiones = {
+            width: ancho,
+            height: altoCanvas
+        };
+        canvas.attr(dimensiones);
+        $("#resize").css(dimensiones);
 
-    var altoCanvas = porcentaje*altoImagen;
-    
-    canvas.setLayer("imagen",{
-                        source: imagen,
-                        x:0, y:0,
-                        width:ancho, height: altoCanvas,
-                        fromCenter: false,
-                        onLoad: function(layer){
-                            $(this).drawLayers();
-                        }
-                    });
-
-    var dimensiones = {
-        width: ancho,
-        height: altoCanvas
+        redibujarCanvas();
     };
-
-    canvas.attr(dimensiones);
     
-    $("#resize").css(dimensiones);
-
-    redibujarCanvas();
 }
 
 function actualizarLista() 
