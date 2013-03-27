@@ -181,7 +181,7 @@ $(function() {
                 }
                 else if(id === "publicarImagen")
                 {
-                    console.log("publicar");
+                    console.log(imagenActual);
                     publicarImagen(imagenActual);
                 }
             });
@@ -215,4 +215,3 @@ $(function() {
     }
 
 });
-

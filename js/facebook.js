@@ -70,30 +70,28 @@ function publicarImagen(rutaImagen)
 function publicarMuro(imagen)
 {
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
-  $.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},
-    function () {
-      FB.api('/photos', 'post', {
-        message:mensaje,
-        url:imagen        
-      }, function(response){
+  
+  FB.api('/photos', 'post', {
+    message:mensaje,
+    url:imagen        
+  }, function(response){
 
-          if (!response || response.error) {
-            console.log(response.error);
-          } else {
-            console.log(response.id);
-            $.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
-          }
+      if (!response || response.error) {
+        console.log(response.error);
+      } else {
+        console.log(response.id);
+        //$.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
+      }
 
-      });  
-    }
+  });  
 }
 
 function CompartirEnMiMuro(fondo,imagen) {
 
-  nuevaImagen(fondo,imagen)
-  $.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},
+  //nuevaImagen(fondo,imagen);
+  //$.post(url:"nuevaimagen.php",{ruta:imagen, cat:fondo.id},
 
-  function (respuesta) {
+  //function (respuesta) {
     var obj = {
       method: 'feed',
       link: 'http://localhost/Qaysen-Graphic/vista.php?id='+respuesta,
@@ -104,12 +102,15 @@ function CompartirEnMiMuro(fondo,imagen) {
     };
 
     FB.ui(obj,function(response) {
-        if (!response || response.error) {
+        if (!response || response.error)
+        {
           console.log(response.error);
-        } else {
+        } else 
+        {
           console.log(response.id);
-          $.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
-    });  
-  })
+          //$.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
+        }
+    });
+  //})
 	
 }
