@@ -213,11 +213,13 @@ http://github.com/necolas/css3-facebook-buttons
     padding: 6px;
     border-top: 1px solid #ccc;
     background: #f2f2f2;
+    z-index: 1;
 }
 
 .uibutton-toolbar .uibutton,
 .uibutton-toolbar .uibutton-group {
     vertical-align: bottom;
+    z-index: 1;
 }
 Window size: x 
 Viewport size: x

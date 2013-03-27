@@ -114,7 +114,7 @@
             </div>
 
         </div> <!-- /container -->
-        <div class="row imagenes uibutton-toolbar" id="explorador">
+        <div class="imagenes" >
             <div class="mostrar-mas">
 
             </div>
@@ -144,9 +144,7 @@
                         ?>
                 </ul>
             </div>
-            <div class="categorias uibutton-toolbar">
-
-            </div>
+          
         </div>
 
         <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>
