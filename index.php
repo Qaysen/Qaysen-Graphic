@@ -149,9 +149,6 @@
             
             </article>
 
-            
-
-          
         </div>
 
         <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>

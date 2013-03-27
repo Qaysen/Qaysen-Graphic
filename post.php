@@ -103,7 +103,7 @@ if (!empty($row)) {
                         </center></div>
                                             
                         <img src="<?php echo $row[1];  ?>" >
-                        <div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>
+                        <div class="fb-comments" data-href="http://ver-novelas.com/qaysen/post.php?id=<?php echo $id; ?>" data-width="600" data-num-posts="10"></div>
                     </div>
                 </div>
             </div>
@@ -138,12 +138,12 @@ if (!empty($row)) {
 <?php 
         }
         else{
-            header ("Location: http://localhost/Qaysen-Graphic/404.html");
+            header ("Location: http://ver-novelas.com/qaysen/404.html");
         }
     }
     else{
 
-    header ("Location: http://localhost/Qaysen-Graphic/404.html");
+    header ("Location: http://ver-novelas.com/qaysen/404.html");
     }
 
  ?>
