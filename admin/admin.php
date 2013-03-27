@@ -15,6 +15,13 @@
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">		
 </head>
 <body>
+<?
+include('../conexion.php');
+
+if($_SESSION)
+{
+include ('header.php');
+?>
     	<br><br>
 		<h3>Bienvenido <?php echo $_SESSION['usuario']; ?></h3>
 		<hr>

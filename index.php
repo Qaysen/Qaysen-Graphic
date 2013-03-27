@@ -83,7 +83,7 @@
                         <div class="control-group">
                             <label class="control-label">Compartir por Facebook:</label>
                             <div class="controls">
-                              <input class="uibutton confirm" type="submit" value="Compartir" id="compartir">
+                              <input class="genImagen uibutton confirm" type="submit" value="Compartir" id="compartir">
                             </div>
                         </div>
                         <div class="control-group">
