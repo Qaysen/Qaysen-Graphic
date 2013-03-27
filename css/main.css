@@ -10,6 +10,13 @@ body {
 	padding-top: 20px;
 }
 
+td{
+	padding: 0;
+	margin: 0;
+}
+table{
+
+}
 header h1 {
 	text-align: center;
 	margin: 10px 0 40px 0;

@@ -1,12 +1,15 @@
 <?php 
-    if (!empty($_GET['id'])) {
-        $id=$_GET['id'];
-        include('conexion.php');   
-        $query = mysql_query("select id_imagen,url_img_creado from meme_generado where id = $id ") or die(mysql_error());
-        $row =mysql_fetch_array($query);
-        if (!empty($row)) {
-            $query2 = mysql_query("select nombre from imagen where id = $row[0] ");
-            $row1=mysql_fetch_array($query2);
+
+if (!empty($_GET['id'])) {
+    $id=$_GET['id'];
+    include('conexion.php');   
+    $query = mysql_query("select id_imagen,url_img_creado from meme_generado where id = $id ") or die(mysql_error());
+    $row =mysql_fetch_array($query);
+
+if (!empty($row)) {
+    $query2 = mysql_query("select nombre from imagen where id = $row[0] ");
+    $row1=mysql_fetch_array($query2);
+
  ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
