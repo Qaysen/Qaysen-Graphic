@@ -10,7 +10,7 @@
 <?php
 include('../conexion.php');
 
-if( ($_POST['nick'] == ' ') or ($_POST['pass'] == ' ') )// VALIDAR CAMPOS VACIOS
+if(empty($_POST['nick']) or empty($_POST['pass']) )// VALIDAR CAMPOS VACIOS
 {
 	Header("Location: index.php"); // redirecciona
 }else{

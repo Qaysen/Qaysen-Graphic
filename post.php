@@ -1,3 +1,6 @@
+<?php 
+    $id=$_GET['id'];
+ ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -79,8 +82,42 @@
                     </div>
                 </div>
                 <div class="span8 canvas">
+
+    
+
                     <div id="resize">
-                        <img src="">
+                        <?php 
+                          include('conexion.php');   
+                           $query = mysql_query("select id_imagen,url_img_creado from meme_generado where id = $id ");
+                            if($r=mysql_query($query,$dbc))
+                            {
+                                while($row=mysql_fetch_array($r))
+                                    {
+                                        $arreglo=$row;
+                                    }
+                            }
+                        else {
+                                echo "no se ha hecho consulta";
+                            }
+                            $query = mysql_query("select nombre from imagen where id = $arreglo[0] ");
+                            if($r=mysql_query($query,$dbc))
+                            {
+                                while($row=mysql_fetch_array($r))
+                                    {
+                                        $nombre=$row;
+                                    }
+                            }
+                        else {
+                                echo "no se ha hecho consulta";
+                            }
+                        mysql_close();   
+                        ?>
+
+                        <div><center>
+                               <?php echo '$nombre'?> 
+                        </center></div>
+                                            
+                        <img src="<?php echo '$arreglo[\'url_img_creado\']';  ?>" >
                         <div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>
                     </div>
                 </div>
