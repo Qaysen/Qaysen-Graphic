@@ -1,3 +1,11 @@
+<?php 
+    $id=$_GET['id'];
+    include('conexion.php');   
+    $query = mysql_query("select * from meme_generado where id = $id ") or die(mysql_error());
+    $row=mysql_fetch_array($query);
+    $query2 = mysql_query("select nombre from imagen where id = $row[1] ");
+    $row1=mysql_fetch_array($query2);
+ ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -79,8 +87,17 @@
                     </div>
                 </div>
                 <div class="span8 canvas">
+
+    
+
                     <div id="resize">
-                        <img src="">
+                   
+
+                        <div><center>
+                               <?php echo $row1[0];?> 
+                        </center></div>
+                                            
+                        <img src="<?php $row[2];  ?>" >
                         <div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>
                     </div>
                 </div>
