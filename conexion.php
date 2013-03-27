@@ -2,7 +2,7 @@
 $dbhost="localhost"; 
 $dbuser="root"; 
 
-$dbpass="123"; 
+$dbpass="123456"; 
 
 
 $db="memes";
