@@ -1,13 +1,11 @@
-<?
-$dbhost="localhost"; 
-$dbuser="root"; 
+<?php
+	$dbhost="localhost"; 
+	$dbuser="root"; 
+	$dbpass="123"; 
 
-$dbpass="123"; 
+	$db="memes";
 
-
-$db="memes";
-
-$dbc=mysql_connect("$dbhost","$dbuser","$dbpass");
-mysql_select_db("$db"); 
+	$dbc=mysql_connect("$dbhost","$dbuser","$dbpass");
+	mysql_select_db("$db"); 
 
 ?>

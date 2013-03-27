@@ -102,17 +102,19 @@ function compartirEnMuro(imagen) {
         url: 'nuevaimagen.php',
         data: imagen,
         success: function(respuesta) {
-            
+            console.log(imagen);
             respuesta = respuesta.replace(/(\r\n|\n|\r)/gm,"");
 
             var obj = {
               method: 'feed',
               link: 'http://localhost/appFaceGraf/post.php?id='+respuesta,
-              picture: 'http://localhost/appFaceGraf/'+imagen.url,
+              picture: 'http://localhost/Qaysen-Graphic/'+imagen.url,
               name: imagen.nombre,
               caption: 'Imagen creada por ... ',
               description: 'Herramienta que permite crear tus propios memes'
             };
+
+            console.log(obj.picture);
 
             FB.ui(obj,function(response) {
                 console.log(response);
