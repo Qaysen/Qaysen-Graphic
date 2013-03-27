@@ -115,7 +115,7 @@
             </div>
 
         </div> <!-- /container -->
-        <div class="imagenes" >
+        <div class="imagenes uibutton-toolbar" >
             <div class="mostrar-mas">
 
             </div>
