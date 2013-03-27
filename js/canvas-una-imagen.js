@@ -28,18 +28,23 @@ $(function() {
 
     //Esto sucede al dar click en una imagen del explorador
     $("#explorador img").on("click", function(){
-        fondoCanvas.id = $(this).attr("value");
+        fondoCanvas.["id"] = $(this).attr("value");
         fondoCanvas.nombre  = $(this).attr("id");
-        console.log(fondoCanvas);
+        console.log(fondoCanvas.nombre);
         imagen = new Image();
         var src = $(this).attr("src").replace("_thumbs","");
         imagen.src = src;
-        var ancho = imagen.width;
-        var alto = imagen.height;
+        var ancho = canvas.attr('width');
+        var altoImagen = imagen.height;
+
+        var porcentaje = ancho/imagen.width;
+
+        var altoCanvas = porcentaje*altoImagen;
         
         canvas.setLayer("imagen",{
                             source: imagen,
                             x:0, y:0,
+                            width:ancho, height: altoCanvas,
                             fromCenter: false,
                             onLoad: function(layer){
                                 $(this).drawLayers();
@@ -48,7 +53,7 @@ $(function() {
 
         var tam = {
             width: ancho,
-            height: alto
+            height: altoCanvas
         };
 
         canvas.attr(tam);
@@ -180,7 +185,7 @@ $(function() {
                 }
                 else if(id === "publicarImagen")
                 {
-                    console.log("publicar");
+                    console.log(imagenActual);
                     publicarImagen(imagenActual);
                 }
                 else if(id === "CompartirEnMiMuro")
@@ -208,14 +213,14 @@ $(function() {
         }
     });
 
-    function crearImagen(url,boton,callback) {
+    function crearImagen(url,callback) {
         $.ajax({
             type: 'POST',
             url: 'save.php',
-            data: {data:dataURL},
+            data: {data:url},
             success: function(archivo) {
                 $("#url").html(archivo);
-                callback(boton);
+                callback();
             },
             error: function(archivo) {
             }
@@ -237,4 +242,3 @@ $(function() {
     //         });
     // });
 });
-

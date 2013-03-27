@@ -34,6 +34,7 @@
         <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
         <script src="js/jcanvas.min.js"></script>
         <script src="js/canvas-una-imagen.js"></script>
+        <!--<script src="js/canvas-optimizado.js"></script>-->
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -116,7 +117,7 @@
             </div>
 
         </div> <!-- /container -->
-        <div class="row imagenes uibutton-toolbar" id="explorador">
+        <div class="imagenes uibutton-toolbar" >
             <div class="mostrar-mas">
 
             </div>
@@ -146,9 +147,7 @@
                         ?>
                 </ul>
             </div>
-            <div class="categorias uibutton-toolbar">
-
-            </div>
+          
         </div>
 
         <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>

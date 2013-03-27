@@ -67,7 +67,7 @@ function publicarImagen(rutaImagen)
 
 };
 
-function publicarMuro(fondo, imagen)
+function publicarMuro(imagen)
 {
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
   $.post("nuevaimagen.php",{ruta:imagen, cat:fondo.id}).
@@ -95,6 +95,7 @@ console.log(fondo);
   $.post("nuevaimagen.php",{ruta:imagen, cat:fondo.id}).
   success(
   function (respuesta) {
+
     var obj = {
       method: 'feed',
       link: 'http://localhost/Qaysen-Graphic/vista.php?id='+respuesta,
@@ -105,10 +106,13 @@ console.log(fondo);
     };
 
     FB.ui(obj,function(response) {
-        if (!response || response.error) {
+        if (!response || response.error)
+        {
           console.log(response.error);
-        } else {
+        } else 
+        {
           console.log(response.id);
+
           $.post("agregarid.php",{id:respuesta, faceid:response.id});
         }
     });  
