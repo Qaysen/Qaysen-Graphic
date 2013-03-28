@@ -146,7 +146,7 @@ function actualizarLista()
         indice = capas.length - fila.index()-1;  
 
         tam = canvas.getLayer(indice).scale
-        console.log(canvas.getLayer(indice).scale);
+        //console.log(canvas.getLayer(indice).scale);
         tam = tam*1.2;
         canvas.setLayer(indice,
             {
@@ -160,7 +160,7 @@ function actualizarLista()
         indice = capas.length - fila.index()-1;  
 
         tam = canvas.getLayer(indice).scale
-        console.log(canvas.getLayer(indice).scale);
+        //console.log(canvas.getLayer(indice).scale);
         tam = tam*0.8;
         canvas.setLayer(indice,
             {
@@ -262,14 +262,14 @@ function generarImagen()
 {
     var dataURL = '';
     var temp_dataURL = canvas.getCanvasImage("png");
-    console.log(compartido);
+    //console.log(compartido);
     var id = $(this).attr("id");
     try{
     if(dataURL !== temp_dataURL)
     {
-        console.log(dataURL !== temp_dataURL);
+        //console.log(dataURL !== temp_dataURL);
         dataURL = temp_dataURL;
-        console.log(dataURL !== temp_dataURL);
+        //console.log(dataURL !== temp_dataURL);
 
         crearImagen(temp_dataURL,function(){
 
