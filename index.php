@@ -54,8 +54,8 @@
                           <thead>
                             <tr>
                               <th>Texto</th>
-                              <th>a</th>
-                              <th>Capa</th>
+                              <th><img src="img/aumentar-texto.png" alt="Aa"></th>
+                              <th><img src="img/layers.png" alt="Capas"></th>
                             </tr>
                           </thead>
                           <tbody>

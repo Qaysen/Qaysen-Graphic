@@ -74,16 +74,16 @@ function actualizarLista()
     for(i=capas.length; i>1;i--)
     {
         filas += "<tr>";
-        filas+='<td><div class="input-prepend"><button class="btn btn-danger"><i class="icon-white icon-remove-sign"></i></button>';
-        filas += "<input type='text' class='capainput'value='";
+        filas+='<td><div class="input-prepend inpur-append"><button class="btn btn-danger"><i class="icon-white icon-remove-sign"></i></button>';
+        filas += "<input type='text' class='capainput input-medium' value='";
         contenido = capas[i-1].text;
         filas += contenido.substring(0,9);
         if(contenido.length >10)
         {
             filas += "...";     
         }
-        filas+="'/></div></td>";
-        filas+="<td></td>";
+        filas+="'/><img src='img/bn.jpg' class='bn img-polaroid' width='20'/></div></td>";
+        filas+='<td><a class="mas-tam"><i class="icon-chevron-up"></i></a><a class="menos-tam"><i class="icon-chevron-down"></i>';
         filas += '<td><a class="subir-capa"><i class="icon-chevron-up"></i></a><a class="bajar-capa"><i class="icon-chevron-down"></i></a></td></tr>';
     }
 
@@ -99,6 +99,34 @@ function actualizarLista()
 
     });
 
+    $(".bn").on("click",function () {
+        fila = $(this).parents("tr:first");
+        indice = capas.length - fila.index()-1;  
+        capa = canvas.getLayer(indice);      
+        blanco = "#fff";
+        negro = "#000";
+        if(capa.fillStyle == blanco)
+        {
+            canvas.setLayer(indice,
+                {
+                    fillStyle: negro,
+                    strokeStyle: "none",
+                    shadowColor: blanco,
+                    shadowBlur: 6
+                });
+        }
+        else
+        {
+            canvas.setLayer(indice,
+                {
+                    fillStyle: blanco,
+                    strokeStyle: negro                    
+                });
+        }
+        redibujarCanvas();
+
+    })
+
     $(".capainput").on("focus",function () {
         fila = $(this).parents("tr:first");
         indice = capas.length - fila.index()-1;  
@@ -111,6 +139,34 @@ function actualizarLista()
             )
             redibujarCanvas();
         })
+    })
+
+    $(".mas-tam").on("click",function () {
+        fila = $(this).parents("tr:first");
+        indice = capas.length - fila.index()-1;  
+
+        tam = canvas.getLayer(indice).scale
+        console.log(canvas.getLayer(indice).scale);
+        tam = tam*1.2;
+        canvas.setLayer(indice,
+            {
+                scale: tam
+            });
+        redibujarCanvas();
+    })
+
+        $(".menos-tam").on("click",function () {
+        fila = $(this).parents("tr:first");
+        indice = capas.length - fila.index()-1;  
+
+        tam = canvas.getLayer(indice).scale
+        console.log(canvas.getLayer(indice).scale);
+        tam = tam*0.8;
+        canvas.setLayer(indice,
+            {
+                scale: tam
+            });
+        redibujarCanvas();
     })
 
     $(".capainput").on("blur",function () {
