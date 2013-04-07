@@ -35,7 +35,7 @@
                     </header>
 
                     <!-- Pruebas1 -->
-                    <button id="prueba1">Prueba1</button>
+                    <a id="prueba1">Prueba1</a>
 
                     <!-- Herramientas -->
                     <div class="herramienta">
