@@ -105,14 +105,7 @@ function publicarImagen(imagen)
 }
 
 function compartirEnMuro(imagen) {
-    $.ajax({
-        type: 'POST',
-        url: 'nuevaimagen.php',
-        data: imagen,
-        success: function(respuesta) {
-            console.log(imagen);
-            respuesta = respuesta.replace(/(\r\n|\n|\r)/gm,"");
-
+  var respuesta=1;
             var obj = {
               method: 'feed',
               link: dominio + 'post.php?id='+respuesta,
@@ -125,26 +118,4 @@ function compartirEnMuro(imagen) {
             console.log(obj);
 
             FB.ui(obj);
-
-            // FB.ui(obj,function(response) {
-            //     console.log(response);
-            //     if (!response || response.error)
-            //     {
-            //       return false;
-            //     } else 
-            //     {
-            //         console.log(typeof(respuesta));
-            //         respuesta = parseInt(respuesta);
-            //         console.log(typeof(respuesta));
-            //       console.log(response.id);
-
-            //       $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
-            //       return true;
-            //     }
-            // });  
-        },
-        error: function(archivo) {
-            console.log("error");
-        }
-    });
 }
