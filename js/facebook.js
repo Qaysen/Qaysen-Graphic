@@ -158,7 +158,7 @@ function prueba1()
   {
     method: 'feed',
     name: 'Loco',
-    link: 'https://developers.Facebook.com/docs/reference/dialogs/',
+    link: 'https://ver-novelas.com/qaysen/',
     picture: 'http://fbrell.com/f8.jpg',
     caption: 'Reference Documentation',
     description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
