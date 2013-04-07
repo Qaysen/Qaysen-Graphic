@@ -139,10 +139,11 @@
         <script src="js/vendor/jquery-1.9.1.min.js"></script>
         <script src="js/jcanvas.min.js"></script>
         <script src="js/canvas-optimizado.js"></script>
+        <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>
         <script src="js/facebook.js"></script>
         <script src="js/main.js"></script>
 
-        <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>
+        
 
         <div id="fb-root"></div>
         <script type="text/javascript">
