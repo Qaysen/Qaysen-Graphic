@@ -117,7 +117,7 @@ function compartirEnMuro(imagen) {
               method: 'feed',
               link: dominio + 'post.php?id='+respuesta,
               picture: dominio + imagen.url,
-              name: imagen.nombre,
+              name: 'adsasdsa',
               caption: 'Imagen creada por ... ',
               description: 'Herramienta que permite crear tus propios memes'
             };
