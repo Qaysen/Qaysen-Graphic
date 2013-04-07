@@ -4,8 +4,11 @@ function inicio()
 {
 	canvas = $("#myCanvas");
     fondoCanvas = {};
+
+    $('.herramienta').on('click', 'button', dibujarTexto)
+
+
 	$("#explorador img").on('click', imagenFondo);
-    $("#dibujarTexto").on("click", dibujarTexto);
     $(".genImagen").on("click", generarImagen);
     colorFondo();
 }
@@ -69,9 +72,10 @@ function imagenFondo()
 function actualizarLista() 
 {
     var filas = "";
+
     capas = canvas.getLayers();
 
-    for(i=capas.length; i>1;i--)
+    for(i=capas.length; i>1; i--)
     {
         filas += "<tr>";
         filas+='<td><div class="input-prepend inpur-append"><button class="btn btn-danger"><i class="icon-white icon-remove-sign"></i></button>';
@@ -87,9 +91,9 @@ function actualizarLista()
         filas += '<td><a class="subir-capa"><i class="icon-chevron-up"></i></a><a class="bajar-capa"><i class="icon-chevron-down"></i></a></td></tr>';
     }
 
-    $(".lista-objetos tbody").html(filas);
+    $(".lista tbody").html(filas);
     
-    $(".lista-objetos .btn-danger").on("click", function(){
+    $(".lista .btn-danger").on("click", function(){
         fila = $(this).parents("tr:first");
         indice = capas.length - fila.index()-1;    
 
@@ -146,7 +150,7 @@ function actualizarLista()
         indice = capas.length - fila.index()-1;  
 
         tam = canvas.getLayer(indice).scale
-        console.log(canvas.getLayer(indice).scale);
+        //console.log(canvas.getLayer(indice).scale);
         tam = tam*1.2;
         canvas.setLayer(indice,
             {
@@ -160,7 +164,7 @@ function actualizarLista()
         indice = capas.length - fila.index()-1;  
 
         tam = canvas.getLayer(indice).scale
-        console.log(canvas.getLayer(indice).scale);
+        //console.log(canvas.getLayer(indice).scale);
         tam = tam*0.8;
         canvas.setLayer(indice,
             {
@@ -237,7 +241,8 @@ function dibujarTexto()
         }
     };
 
-    text = $("#texto").val();
+    text = $(".herramienta").find('input[type="text"]').val();
+
     capas = canvas.getLayers().length;
     
     var distinto = {
@@ -262,14 +267,14 @@ function generarImagen()
 {
     var dataURL = '';
     var temp_dataURL = canvas.getCanvasImage("png");
-    console.log(compartido);
+    //console.log(compartido);
     var id = $(this).attr("id");
     try{
     if(dataURL !== temp_dataURL)
     {
-        console.log(dataURL !== temp_dataURL);
+        //console.log(dataURL !== temp_dataURL);
         dataURL = temp_dataURL;
-        console.log(dataURL !== temp_dataURL);
+        //console.log(dataURL !== temp_dataURL);
 
         crearImagen(temp_dataURL,function(){
 

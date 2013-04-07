@@ -29,7 +29,7 @@ else
 			$thumb->size(90);						// set the biggest width or height for thumbnail
 			$thumb->jpeg_quality(70);				// [OPTIONAL] set quality for jpeg only (0 - 100) (worst - best), default = 75
 			//$thumb->show();						// show your thumbnail
-			$rutaEnServidorThum='../img_thumbs';
+			$rutaEnServidorThum='img_thumbs';
 			$rutaDestinoThum=$rutaEnServidorThum.'/'.$nombreimagen;
 			$thumb->save($rutaDestinoThum);				// save your thumbnail to file
 

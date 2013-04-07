@@ -8,18 +8,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Don Meme | Crea los memes mas originales de la Web</title>
         <meta name="description" content="Con Don Meme crea los memes mas originales y graciosos de la red.">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <style>
-            #resize
-            {
-                width:600px;
-                height: 600px;
-            }
-        </style>
-
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/facebook.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -30,27 +21,31 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Logo -->
-
+        <!-- Contenedor de la app -->
         <div class="container">
 
-            <!-- Example row of columns -->
-            <div class="row main">
-                <div class="span4 herramientas">
-                    <header>
+            <!-- El grid fluido para utilizar -->
+            <div class="row-fluid main">
+
+                <!-- Sidebar -->
+                <div class="span4">
+                    <!-- Logo -->
+                    <header class="logo">
                         <h1>Don Meme</h1>
                     </header>
-                    <div class="agregar-texto">
+
+                    <!-- Herramientas -->
+                    <div class="herramienta">
                         <fieldset>
                             <legend>Agregar Texto</legend>
-                            <input type="text" placeholder="Texto a agregar" id= "texto" >
-                            <button type="submit" class="btn" id= "dibujarTexto">Agregar texto</button>
+                            <input type="text" placeholder="Ingresar texto" id="texto" >
+                            <button type="submit" class="uibutton">Agregar texto</button>
                         </fieldset>
                     </div>
-                    <br>
-                    <div class="lista-objetos">
-                        <legend>Lista de objetos</legend>
-                        <table class="table" >
+
+                    <!-- Lista de objetos -->
+                    <div class="lista">
+                        <table class="table">
                           <thead>
                             <tr>
                               <th>Texto</th>
@@ -62,84 +57,86 @@
                           </tbody>
                         </table>
                     </div>
-                    <div class="compartir">
-                        <legend>Compartelo con tus amigos</legend>
-                        <div class="control-group">
-                            <label class="control-label">Registrate en la app:</label>
-                            <div class="controls">
-                              <button class="uibutton confirm" id="login">Login</button>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">Compartir por Facebook:</label>
-                            <div class="controls">
-                              <input class="genImagen uibutton confirm" type="submit" value="Compartir" id="compartir">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">Publicar en el muro:</label>
-                            <div class="controls">
-                              <input class="genImagen uibutton confirm" type="submit" value="Publicar imagen" id="publicarImagen">
-                            </div>
-                        </div>
-                        <div class="control-group">
-
-                            <label class="control-label">Descargar:</label>
-                            <div class="controls">
-                              <a class="genImagen uibutton special" id="descargar">Descargar imagen</a>
-                            </div>
-                        </div>
-                        <div id="publicarFB" style="opacity: 0"></div>
-                    </div>
                 </div>
-                <div class="span8 canvas">
-                    <div id="resize">
-                        <canvas id="myCanvas" width="600" height="600"></canvas>
-                    </div>
+
+                <!-- Generar Imagen -->
+                <div class="span8">
+
+                    <!-- Compartir con redes sociales -->
+                    <aside class="uibutton-toolbar">
+                        <a class="uibutton confirm" id="login">Login</a>
+                        <a class="uibutton confirm genImagen" id="compartir">Compartir</a>
+                        <a class="uibutton confirm genImagen" id="publicarImagen">Publicar imagen en tu Muro</a>
+                        <a class="uibutton special genImagen" id="descargar">Descargar</a>
+                    </aside>
+
+                    <!-- Canvas -->
+                    <canvas id="myCanvas" width="600" height="600"></canvas>
+
+                    <!-- Imagenes de fondo para elegir -->
+                    <section class="imagenes">
+
+                        <!-- Header de carusel de Imagenes -->
+                        <header>
+                            <h3>
+                                <img src="http://www.facebook.com/images/profile/timeline/app_icons/photos_24.png">
+                                <span>Imagenes de Fondo</span>
+                            </h3>
+                            <div class="boton">
+                                <a class="uibutton icon add">Ocultar</a>
+                            </div>
+                        </header>
+
+                        <!-- Carusel de imagenes -->
+                        <div class="mImagenes">
+                            <div class="acomodarImagenes">
+                                <div class="todasImagenes">
+                                    <a class="controles">
+                                        <div class="opaco"></div>
+                                        <i class="adelante sp_eiocyo sx_ab8d38"></i>
+                                    </a>
+                                    <a class="controles1">
+                                        <div class="opaco1"></div>
+                                        <i class="atras sp_eiocyo sx_1caf2a"></i>
+                                    </a>
+                                    <div class="xImagen" id="explorador">
+                                        <ul class="listasImagenes">
+                                            <?php 
+                                            include('conexion.php');
+                                            $query="SELECT * FROM imagen ORDER BY nombre DESC";
+                                            if($r=mysql_query($query,$dbc)){
+                                            while($row=mysql_fetch_array($r)){
+                                                ?>
+                                            <li class="liImagen">
+                                                <a class="liaImagen">
+                                                    <img class="img" height="95" id="<?php echo $row['nombre']; ?>" value='<?php echo $row['id']; ?>' src="<?php echo $row['thumbs']; ?>" width="95" alt="">
+                                                </a>
+                                                <div class="lidivtitulo">
+                                                    <a class="divatitulo" ><?php echo $row['nombre']; ?></a>
+                                                </div>
+                                            </li>
+                                                <?php
+                                                }
+                                            }
+                                            else {
+                                                echo "no se ha hecho consula";
+                                            }
+                                                mysql_close();
+                                            ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
 
         </div> <!-- /container -->
-        <div class="imagenes uibutton-toolbar" id="explorador">
-           
 
-            <article id="slider">           
-                
-            
-            
-                <!-- The Slider -->
-                 
-                <div id="slides">
-                        <div id="mostrar-menos">
+        <div id="url" hidden><div>
 
-                        </div>
-                    
-                        <div class="inner">
-                        
-                            <?php 
-
-                            include('conexion.php');
-                            $query="SELECT * FROM imagen ORDER BY nombre DESC";
-                            if($r=mysql_query($query,$dbc)){
-                            while($row=mysql_fetch_array($r)){
-                            echo   "<article><img id='{$row['nombre']}' value='{$row['id']}' src='{$row['thumbs']}' ></article>"; 
-                                }
-                            }
-                            else {
-                                echo "no se ha hecho consula";
-                            }
-                                mysql_close();
-                            ?>
-                            
-                        </div> <!-- .inner -->
-                       
-                </div> <!-- #slides -->
-        
-            </article>
-
-        </div>
-
-        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/vendor/jquery-1.9.1.min.js"></script>
         <script src="js/jcanvas.min.js"></script>
         <script src="js/canvas-optimizado.js"></script>
         <script src="js/facebook.js"></script>
@@ -163,7 +160,5 @@
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-
-        <div id="url" hidden><div>
     </body>
 </html>
