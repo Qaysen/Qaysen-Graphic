@@ -35,7 +35,7 @@
                     </header>
 
                     <!-- Pruebas1 -->
-                    <div id="prueba1">Prueba1</div>
+                    <a id="prueba1">Prueba1</a>
 
                     <!-- Herramientas -->
                     <div class="herramienta">
