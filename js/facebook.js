@@ -124,16 +124,7 @@ function compartirEnMuro(imagen) {
 
             console.log(obj);
 
-            FB.ui(obj,function(response) {
-                if (!response || response.error)
-                {
-                  console.log(response.error);
-                } else 
-                {
-                  console.log(response.id);
-                  //$.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
-                }
-            });
+            FB.ui(obj);
 
             // FB.ui(obj,function(response) {
             //     console.log(response);
