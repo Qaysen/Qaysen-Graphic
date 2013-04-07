@@ -10,7 +10,13 @@ function inicio()
 
 	$("#explorador img").on('click', imagenFondo);
     $(".genImagen").on("click", generarImagen);
+    $("#compartir").on("click", compartir);
     colorFondo();
+}
+
+function compartir()
+{
+    compartirEnMuro();
 }
 
 function redibujarCanvas()
@@ -288,7 +294,7 @@ function generarImagen()
             }
             else if(id === "compartir" && !compartido)
             {
-                compartido = compartirEnMuro();
+                compartido = compartirEnMuro(fondoCanvas);
             }
         });
     }
