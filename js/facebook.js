@@ -122,7 +122,7 @@ function compartirEnMuro(imagen) {
               description: 'Herramienta que permite crear tus propios memes'
             };
 
-            console.log(obj.picture);
+            console.log(obj);
 
             FB.ui(obj,function(response) {
                 if (!response || response.error)
