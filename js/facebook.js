@@ -5,6 +5,7 @@ var dominio = "http://ver-novelas.com/qaysen/"
 function inicio()
 {
 	$('#login').on('click',comprobarLogin);
+  $('#prueba1').on('click',prueba1);
 }
 
 function iniciarFb()
@@ -145,4 +146,26 @@ function compartirEnMuro(imagen) {
             console.log("error");
         }
     });
+}
+
+
+function prueba1()
+{
+  FB.ui(
+  {
+    method: 'feed',
+    name: 'Facebook Dialogs',
+    link: 'https://developers.facebook.com/docs/reference/dialogs/',
+    picture: 'http://fbrell.com/f8.jpg',
+    caption: 'Reference Documentation',
+    description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+  },
+  function(response) {
+    if (response && response.post_id) {
+      alert('Post was published.');
+    } else {
+      alert('Post was not published.');
+    }
+  }
+);
 }

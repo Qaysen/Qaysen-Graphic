@@ -34,6 +34,9 @@
                         <h1>Don Meme</h1>
                     </header>
 
+                    <!-- Pruebas1 -->
+                    <button id="prueba1">Prueba1</button>
+
                     <!-- Herramientas -->
                     <div class="herramienta">
                         <fieldset>
