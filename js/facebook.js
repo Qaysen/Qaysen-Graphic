@@ -105,6 +105,7 @@ function publicarImagen(imagen)
 }
 
 function compartirEnMuro(imagen) {
+    console.log(imagen);
     $.ajax({
         type: 'POST',
         url: 'nuevaimagen.php',
