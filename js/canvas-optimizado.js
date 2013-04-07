@@ -288,7 +288,7 @@ function generarImagen()
             }
             else if(id === "compartir" && !compartido)
             {
-                compartido = compartirEnMuro(fondoCanvas);
+                compartido = compartirEnMuro();
             }
         });
     }

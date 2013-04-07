@@ -104,12 +104,12 @@ function publicarImagen(imagen)
 });
 }
 
-function compartirEnMuro(imagen) {
+function compartirEnMuro() {
   var respuesta=1;
             var obj = {
               method: 'feed',
               link: dominio + 'post.php?id='+respuesta,
-              picture: dominio + imagen.url,
+              picture: "http://ver-novelas.com/qaysen/generados/b67562042740a43a179951095aef0af1.png",
               name: 'adsasdsa',
               caption: 'Imagen creada por ... ',
               description: 'Herramienta que permite crear tus propios memes'
