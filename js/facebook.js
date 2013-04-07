@@ -161,8 +161,9 @@ function prueba1()
         cookie     : true, // enable cookies to allow the server to access the session
         xfbml      : true  // parse XFBML
       });
+  };
 
-        FB.ui(
+          FB.ui(
   {
     method: 'feed',
     name: 'Facebook Dialogs',
@@ -179,5 +180,4 @@ function prueba1()
     }
   }
 );
-  };
 }
