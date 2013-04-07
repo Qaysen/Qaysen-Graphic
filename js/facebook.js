@@ -105,7 +105,6 @@ function publicarImagen(imagen)
 }
 
 function compartirEnMuro(imagen) {
-    console.log(imagen);
     $.ajax({
         type: 'POST',
         url: 'nuevaimagen.php',
@@ -126,21 +125,32 @@ function compartirEnMuro(imagen) {
             console.log(obj.picture);
 
             FB.ui(obj,function(response) {
-                console.log(response);
                 if (!response || response.error)
                 {
-                  return false;
+                  console.log(response.error);
                 } else 
                 {
-                    console.log(typeof(respuesta));
-                    respuesta = parseInt(respuesta);
-                    console.log(typeof(respuesta));
                   console.log(response.id);
-
-                  $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
-                  return true;
+                  //$.post(url:"agregarid.php",{id:respuesta, faceid:response.id});
                 }
-            });  
+            });
+
+            // FB.ui(obj,function(response) {
+            //     console.log(response);
+            //     if (!response || response.error)
+            //     {
+            //       return false;
+            //     } else 
+            //     {
+            //         console.log(typeof(respuesta));
+            //         respuesta = parseInt(respuesta);
+            //         console.log(typeof(respuesta));
+            //       console.log(response.id);
+
+            //       $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
+            //       return true;
+            //     }
+            // });  
         },
         error: function(archivo) {
             console.log("error");
