@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
+        <title>Don Meme | Crea los memes mas originales de la Web</title>
+        <meta name="description" content="Con Don Meme crea los memes mas originales y graciosos de la red.">
         <meta name="viewport" content="width=device-width">
 
         <style>
@@ -16,21 +16,12 @@
                 width:600px;
                 height: 600px;
             }
-
         </style>
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" type="text/css" href="css/facebook.css">
         <link rel="stylesheet" href="css/main.css">
-
-        <link href="css/jquery-ui-1.10.2.custom.css" rel="stylesheet">
-
-        <script src="js/jquery-1.9.1.min.js"></script>
-        <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
-        <script src="js/jcanvas.min.js"></script>
-        <!--<script src="js/canvas-una-imagen.js"></script>-->
-        <script src="js/canvas-optimizado.js"></script>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -47,7 +38,7 @@
             <div class="row main">
                 <div class="span4 herramientas">
                     <header>
-                        <h1>Qaysen Graphic</h1>
+                        <h1>Don Meme</h1>
                     </header>
                     <div class="agregar-texto">
                         <fieldset>
@@ -59,13 +50,12 @@
                     <br>
                     <div class="lista-objetos">
                         <legend>Lista de objetos</legend>
-                        <table class="table">
+                        <table class="table" >
                           <thead>
                             <tr>
-                              <th>#</th>
-                              <th>Objeto</th>
-                              <th>Accion</th>
-                              <th>Capa</th>
+                              <th>Texto</th>
+                              <th><img src="img/aumentar-texto.png" alt="Aa"></th>
+                              <th><img src="img/layers.png" alt="Capas"></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -144,25 +134,20 @@
                         </div> <!-- .inner -->
                        
                 </div> <!-- #slides -->
-            
-                
-            
+        
             </article>
 
         </div>
 
-        <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>
-        <script type="text/javascript" src="js/facebook.js"></script> 
-        <!--<script src="js/login.js"></script>
-        <script src="js/compartir.js"></script>
-        <script src="js/publicar-imagen.js"></script>-->
-
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-
-        <script src="js/vendor/bootstrap.min.js"></script>-->
-        
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/jcanvas.min.js"></script>
+        <script src="js/canvas-optimizado.js"></script>
+        <script src="js/facebook.js"></script>
         <script src="js/main.js"></script>
+
+        <script src="https://connect.facebook.net/en_US/all.js#appId=520023464714856&amp;xfbml=1"></script>
+
+        <div id="fb-root"></div>
         <script type="text/javascript">
             (function(d, debug){
                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];

@@ -3,17 +3,16 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-.capainput
-{
-	background: none;
-}
-
 body {
 	margin: 0;
 	padding: 0;
 	background: #eee;
 	padding-top: 20px;
+}
+
+tr{
+	margin:0;
+	padding: 0;
 }
 
 header h1 {
