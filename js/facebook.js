@@ -151,6 +151,17 @@ function compartirEnMuro(imagen) {
 
 function prueba1()
 {
+  //Inicializamos la APP con FB
+  window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '520023464714856', // App ID
+        channelUrl : dominio, // Channel File
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : true  // parse XFBML
+      });
+  };
+  
   FB.ui(
   {
     method: 'feed',
