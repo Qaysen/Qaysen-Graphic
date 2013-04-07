@@ -152,21 +152,12 @@ function compartirEnMuro(imagen) {
 function prueba1()
 {
   alert('pasa');
-  //Inicializamos la APP con FB
-  window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '520023464714856', // App ID
-        channelUrl : 'http://ver-novelas.com/', // Channel File
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
-      });
-  };
+  FB.init({appId: "520023464714856", status: true, cookie: true});
 
-          FB.ui(
+  FB.ui(
   {
     method: 'feed',
-    name: 'Facebook Dialogs',
+    name: 'Loco',
     link: 'https://developers.Facebook.com/docs/reference/dialogs/',
     picture: 'http://fbrell.com/f8.jpg',
     caption: 'Reference Documentation',
