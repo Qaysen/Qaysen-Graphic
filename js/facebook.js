@@ -117,5 +117,10 @@ function compartirEnMuro(imagen) {
 
             console.log(obj);
 
-            FB.ui(obj);
+            function callback(response) {
+          console.log(response);
+        }
+
+        FB.ui(obj, callback);
+
 }
