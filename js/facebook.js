@@ -4,16 +4,6 @@ var dominio = "http://ver-novelas.com/qaysen/"
 
 function inicio()
 {
-  //Inicializamos la APP con FB
-  window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '520023464714856', // App ID
-        channelUrl : 'http://ver-novelas.com/', // Channel File
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
-      });
-  };
 	$('#login').on('click',comprobarLogin);
   $('#prueba1').on('click',prueba1);
 }
@@ -170,9 +160,8 @@ function prueba1()
         cookie     : true, // enable cookies to allow the server to access the session
         xfbml      : true  // parse XFBML
       });
-  };
 
-  FB.ui(
+        FB.ui(
   {
     method: 'feed',
     name: 'Facebook Dialogs',
@@ -189,4 +178,5 @@ function prueba1()
     }
   }
 );
+  };
 }
