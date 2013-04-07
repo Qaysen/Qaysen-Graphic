@@ -151,6 +151,7 @@ function compartirEnMuro(imagen) {
 
 function prueba1()
 {
+  alert('pasa');
   //Inicializamos la APP con FB
   window.fbAsyncInit = function() {
       FB.init({
