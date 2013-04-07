@@ -104,23 +104,45 @@ function publicarImagen(imagen)
 });
 }
 
-function compartirEnMuro() {
-  var respuesta=1;
+function compartirEnMuro(imagen) {
+    $.ajax({
+        type: 'POST',
+        url: 'nuevaimagen.php',
+        data: imagen,
+        success: function(respuesta) {
+            console.log(imagen);
+            respuesta = respuesta.replace(/(\r\n|\n|\r)/gm,"");
+
             var obj = {
               method: 'feed',
               link: dominio + 'post.php?id='+respuesta,
-              picture: "http://ver-novelas.com/qaysen/generados/b67562042740a43a179951095aef0af1.png",
-              name: 'adsasdsa',
+              picture: dominio + imagen.url,
+              name: imagen.nombre,
               caption: 'Imagen creada por ... ',
               description: 'Herramienta que permite crear tus propios memes'
             };
 
-            console.log(obj);
+            console.log(obj.picture);
 
-            function callback(response) {
-          console.log(response);
+            FB.ui(obj,function(response) {
+                console.log(response);
+                if (!response || response.error)
+                {
+                  return false;
+                } else 
+                {
+                    console.log(typeof(respuesta));
+                    respuesta = parseInt(respuesta);
+                    console.log(typeof(respuesta));
+                  console.log(response.id);
+
+                  $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
+                  return true;
+                }
+            });  
+        },
+        error: function(archivo) {
+            console.log("error");
         }
-
-        FB.ui(obj, callback);
-
+    });
 }
