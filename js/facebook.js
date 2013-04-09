@@ -72,7 +72,7 @@ function verificarLogin(funcion)
     }
 }
 
-// publicarImagen = verificarLogin(publicarImagen(arguments));
+publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
   FB.init({appId: "520023464714856", status: true, cookie: true});
