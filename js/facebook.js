@@ -86,7 +86,7 @@ function publicarImagen(imagen)
           message:mensaje,
           url:dominio+imagen.url        
         }, function(response){
-
+            console.log(response);
             if (!response || response.error) {
               console.log(response.error);
             } else {
