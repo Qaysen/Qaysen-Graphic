@@ -106,7 +106,7 @@ function publicarImagen(imagen)
 }
 
 function compartirEnMuro(imagen) {
-  FB.init({appId: "520023464714856", status: true, cookie: true});
+  FB.init({appId: "520023464714856", channelUrl : dominio, status: true, cookie: true});
     $.ajax({
         type: 'POST',
         url: 'nuevaimagen.php',
@@ -130,7 +130,7 @@ function compartirEnMuro(imagen) {
                 console.log(response);
                 if (!response || response.error)
                 {
-                  // return false;
+                  return false;
                 } else 
                 {
                     console.log(typeof(respuesta));
@@ -139,7 +139,7 @@ function compartirEnMuro(imagen) {
                   console.log(response.id);
 
                   $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
-                  // return true;
+                  return true;
                 }
             });  
         },
