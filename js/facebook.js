@@ -75,6 +75,7 @@ function verificarLogin(funcion)
 publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
+  iniciarFb();
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
   $.ajax({
     type: 'POST',
