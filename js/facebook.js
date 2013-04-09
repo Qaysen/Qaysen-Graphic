@@ -72,7 +72,7 @@ function verificarLogin(funcion)
     }
 }
 
-//publicarImagen = verificarLogin(publicarImagen(arguments));
+// publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
   FB.init({appId: "520023464714856", status: true, cookie: true});
@@ -82,20 +82,19 @@ function publicarImagen(imagen)
     url: 'nuevaimagen.php',
     data: imagen,
     success: function(respuesta) {
+        console.log(dominio+imagen.url);
         FB.api('/photos', 'post', {
           message:mensaje,
           url:dominio+imagen.url        
         }, function(response){
-            console.log(response);
             if (!response || response.error) {
               console.log(response.error);
             } else {
               console.log(response.id);
               $.post("agregarid.php",{id:respuesta, faceid:response.id});
             }
-
+            console.log(respuesta);
         });
-        console.log(respuesta);
     },
     error: function(archivo) {
         console.log("error");
