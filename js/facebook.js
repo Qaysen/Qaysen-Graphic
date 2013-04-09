@@ -77,18 +77,7 @@ function verificarLogin(funcion)
 // publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
-  iniciarFb();
-  FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            // Estas conectado con la app
-        } else if (response.status === 'not_authorized') {
-            // No tienes los permisos
-            login();
-        } else {
-            // No estas logueado
-            login();
-        }
-    });
+  FB.init({appId: "520023464714856", status: true, cookie: true});
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
   $.ajax({
     type: 'POST',
@@ -96,7 +85,7 @@ function publicarImagen(imagen)
     data: imagen,
     success: function(respuesta) {
         console.log(respuesta);
-        FB.api('/photos', 'post', {
+        FB.ui('/photos', 'post', {
           message:mensaje,
           url:dominio+imagen.url        
         }, function(response){
