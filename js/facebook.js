@@ -72,10 +72,9 @@ function verificarLogin(funcion)
     }
 }
 
-// publicarImagen = verificarLogin(publicarImagen(arguments));
+publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
-  FB.init({appId: "520023464714856", status: true, cookie: true});
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
   $.ajax({
     type: 'POST',
