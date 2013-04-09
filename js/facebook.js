@@ -82,7 +82,6 @@ function publicarImagen(imagen)
     url: 'nuevaimagen.php',
     data: imagen,
     success: function(respuesta) {
-        console.log(respuesta);
         FB.api('/photos', 'post', {
           message:mensaje,
           url:dominio+imagen.url        
@@ -95,7 +94,8 @@ function publicarImagen(imagen)
               $.post("agregarid.php",{id:respuesta, faceid:response.id});
             }
 
-        }); 
+        });
+        console.log(respuesta);
     },
     error: function(archivo) {
         console.log("error");
