@@ -84,8 +84,8 @@ function publicarImagen(imagen)
     url: 'nuevaimagen.php',
     data: imagen,
     success: function(respuesta) {
-        console.log(respuesta);
-        FB.ui('/photos', 'post', {
+        console.log(imagen.url);
+        FB.api('/photos', 'post', {
           message:mensaje,
           url:dominio+imagen.url        
         }, function(response){
