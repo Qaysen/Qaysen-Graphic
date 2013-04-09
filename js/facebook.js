@@ -11,7 +11,7 @@ function inicio()
 function iniciarFb()
 {
   //Inicializamos la APP con FB
-  window.fbAsyncInit = function() {
+  // window.fbAsyncInit = function() {
       FB.init({
         appId      : '520023464714856', // App ID
         channelUrl : dominio, // Channel File
@@ -19,7 +19,7 @@ function iniciarFb()
         cookie     : true, // enable cookies to allow the server to access the session
         xfbml      : true  // parse XFBML
       });
-  };
+  // };
 }
 
 function comprobarLogin()
@@ -74,9 +74,21 @@ function verificarLogin(funcion)
     }
 }
 
-publicarImagen = verificarLogin(publicarImagen(arguments));
+// publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
+  iniciarFb();
+  FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            // Estas conectado con la app
+        } else if (response.status === 'not_authorized') {
+            // No tienes los permisos
+            login();
+        } else {
+            // No estas logueado
+            login();
+        }
+    });
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
   $.ajax({
     type: 'POST',
