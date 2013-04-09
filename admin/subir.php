@@ -13,7 +13,7 @@ else
 		include("resize.php");
 		include('../conexion.php');
 
-		$rutaEnServidor='../img';
+		$rutaEnServidor='img';
 		$rutaTemporal=$_FILES['imagen']['tmp_name'];
 		$nombreimagen=$_FILES['imagen']['name'];	
 

@@ -120,8 +120,8 @@ function compartirEnMuro(imagen) {
               link: dominio + 'post.php?id='+respuesta,
               picture: dominio + imagen.url,
               name: imagen.nombre,
-              caption: 'Imagen creada por ... ',
-              description: 'Herramienta que permite crear tus propios memes'
+              caption: 'Imagen creada por Donme.me ',
+              description: 'Crea tus propios memes desde http://dondeme.me'
             };
 
             console.log(obj.picture);
@@ -130,7 +130,7 @@ function compartirEnMuro(imagen) {
                 console.log(response);
                 if (!response || response.error)
                 {
-                  return false;
+                  // return false;
                 } else 
                 {
                     console.log(typeof(respuesta));
@@ -139,7 +139,7 @@ function compartirEnMuro(imagen) {
                   console.log(response.id);
 
                   $.post("agregarid.php",{id:parseInt(respuesta), faceid:response.post_id});
-                  return true;
+                  // return true;
                 }
             });  
         },
