@@ -11,7 +11,7 @@ function inicio()
 function iniciarFb()
 {
   //Inicializamos la APP con FB
-  // window.fbAsyncInit = function() {
+  window.fbAsyncInit = function() {
       FB.init({
         appId      : '520023464714856', // App ID
         channelUrl : dominio, // Channel File
@@ -19,7 +19,7 @@ function iniciarFb()
         cookie     : true, // enable cookies to allow the server to access the session
         xfbml      : true  // parse XFBML
       });
-  // };
+  };
 }
 
 function comprobarLogin()
@@ -40,6 +40,7 @@ function comprobarLogin()
 
 function login()
 {
+  iniciarFb();
 	FB.login(function(response) {
         if (response.authResponse) {
             // Conectado con la app
@@ -50,17 +51,16 @@ function login()
     }, {scope: 'publish_actions,email, publish_stream'});
 }
 
-function verificarLogin(funcion)
+function verificarLogin(imagen)
 {
   iniciarFb();
-    return function(){
         FB.getLoginStatus(function(response){
             if(response.status === 'connected') 
             {
                 console.log("verificado");
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
-                funcion();
+                publicarImagen(imagen, accessToken);
             }
             else if (response.status === 'not_authorized') 
             {
@@ -71,17 +71,21 @@ function verificarLogin(funcion)
             alert("Haz click en Login");
             }
             });
-    }
 }
 
-// publicarImagen = verificarLogin(publicarImagen(arguments));
-function publicarImagen(imagen)
+function publicarImagen(imagen, accessToken)
 {
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
-  FB.init({appId: "520023464714856", status: true, cookie: true});
+  $.ajax({
+    type: 'POST',
+    url: 'nuevaimagen.php',
+    data: imagen,
+    success: function(respuesta) {
+        console.log(respuesta);
         FB.api('/photos', 'post', {
           message:mensaje,
-          url:dominio+imagen.url        
+          url:dominio+imagen.url,
+          accessToken: accessToken   
         }, function(response){
 
             if (!response || response.error) {
@@ -92,35 +96,14 @@ function publicarImagen(imagen)
             }
 
         }); 
-//   $.ajax({
-//     type: 'POST',
-//     url: 'nuevaimagen.php',
-//     data: imagen,
-//     success: function(respuesta) {
-//         console.log(imagen.url);
-//         FB.init({appId: "520023464714856", status: true, cookie: true});
-//         FB.api('/photos', 'post', {
-//           message:mensaje,
-//           url:dominio+imagen.url        
-//         }, function(response){
-
-//             if (!response || response.error) {
-//               console.log(response.error);
-//             } else {
-//               console.log(response.id);
-//               $.post("agregarid.php",{id:respuesta, faceid:response.id});
-//             }
-
-//         }); 
-//     },
-//     error: function(archivo) {
-//         console.log("error");
-//     }
-// });
+    },
+    error: function(archivo) {
+        console.log("error");
+    }
+});
 }
 
 function compartirEnMuro(imagen) {
-  FB.init({appId: "520023464714856", channelUrl : dominio, status: true, cookie: true});
     $.ajax({
         type: 'POST',
         url: 'nuevaimagen.php',
@@ -134,8 +117,8 @@ function compartirEnMuro(imagen) {
               link: dominio + 'post.php?id='+respuesta,
               picture: dominio + imagen.url,
               name: imagen.nombre,
-              caption: 'Imagen creada por Donme.me ',
-              description: 'Crea tus propios memes desde http://dondeme.me'
+              caption: 'Imagen creada por ... ',
+              description: 'Herramienta que permite crear tus propios memes'
             };
 
             console.log(obj.picture);
