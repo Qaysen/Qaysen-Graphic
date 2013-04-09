@@ -77,14 +77,8 @@ function verificarLogin(funcion)
 // publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
-  FB.init({appId: "520023464714856", status: true, cookie: true});
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
-  $.ajax({
-    type: 'POST',
-    url: 'nuevaimagen.php',
-    data: imagen,
-    success: function(respuesta) {
-        console.log(imagen.url);
+  FB.init({appId: "520023464714856", status: true, cookie: true});
         FB.api('/photos', 'post', {
           message:mensaje,
           url:dominio+imagen.url        
@@ -98,11 +92,31 @@ function publicarImagen(imagen)
             }
 
         }); 
-    },
-    error: function(archivo) {
-        console.log("error");
-    }
-});
+//   $.ajax({
+//     type: 'POST',
+//     url: 'nuevaimagen.php',
+//     data: imagen,
+//     success: function(respuesta) {
+//         console.log(imagen.url);
+//         FB.init({appId: "520023464714856", status: true, cookie: true});
+//         FB.api('/photos', 'post', {
+//           message:mensaje,
+//           url:dominio+imagen.url        
+//         }, function(response){
+
+//             if (!response || response.error) {
+//               console.log(response.error);
+//             } else {
+//               console.log(response.id);
+//               $.post("agregarid.php",{id:respuesta, faceid:response.id});
+//             }
+
+//         }); 
+//     },
+//     error: function(archivo) {
+//         console.log("error");
+//     }
+// });
 }
 
 function compartirEnMuro(imagen) {
