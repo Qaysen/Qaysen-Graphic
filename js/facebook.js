@@ -11,7 +11,6 @@ function inicio()
 function iniciarFb()
 {
   //Inicializamos la APP con FB
-  window.fbAsyncInit = function() {
       FB.init({
         appId      : '520023464714856', // App ID
         channelUrl : dominio, // Channel File
@@ -19,7 +18,6 @@ function iniciarFb()
         cookie     : true, // enable cookies to allow the server to access the session
         xfbml      : true  // parse XFBML
       });
-  };
 }
 
 function comprobarLogin()
@@ -40,7 +38,6 @@ function comprobarLogin()
 
 function login()
 {
-  iniciarFb();
 	FB.login(function(response) {
         if (response.authResponse) {
             // Conectado con la app
