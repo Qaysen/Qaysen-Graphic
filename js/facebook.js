@@ -72,7 +72,7 @@ function verificarLogin(funcion)
     }
 }
 
-publicarImagen = verificarLogin(publicarImagen(arguments));
+// publicarImagen = verificarLogin(publicarImagen(arguments));
 function publicarImagen(imagen)
 {
   iniciarFb();
