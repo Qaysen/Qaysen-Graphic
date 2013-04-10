@@ -11,7 +11,7 @@ function inicio()
 function iniciarFb()
 {
   //Inicializamos la APP con FB
-  window.fbAsyncInit = function() {
+  // window.fbAsyncInit = function() {
       FB.init({
         appId      : '520023464714856', // App ID
         channelUrl : dominio, // Channel File
@@ -19,7 +19,7 @@ function iniciarFb()
         cookie     : true, // enable cookies to allow the server to access the session
         xfbml      : true  // parse XFBML
       });
-  };
+  // };
 }
 
 function comprobarLogin()
@@ -105,6 +105,7 @@ function publicarImagen(imagen, accessToken)
 }
 
 function compartirEnMuro(imagen) {
+  iniciarFb();
     $.ajax({
         type: 'POST',
         url: 'nuevaimagen.php',
