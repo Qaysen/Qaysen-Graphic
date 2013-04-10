@@ -105,7 +105,7 @@ function publicarImagen(imagen, accessToken)
 }
 
 function compartirEnMuro(imagen) {
-  iniciarFb();
+  FB.init({appId: "520023464714856", status: true, cookie: true});
     $.ajax({
         type: 'POST',
         url: 'nuevaimagen.php',
