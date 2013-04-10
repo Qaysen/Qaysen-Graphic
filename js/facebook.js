@@ -53,13 +53,7 @@ function login()
 
 function verificarLogin(imagen)
 {
-      FB.init({
-        appId      : '520023464714856', // App ID
-        channelUrl : dominio, // Channel File
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
-      });
+      FB.init({appId: "520023464714856", status: true, cookie: true});
   
         FB.getLoginStatus(function(response){
             if(response.status === 'connected') 
