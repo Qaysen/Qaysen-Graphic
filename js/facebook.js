@@ -5,6 +5,7 @@ var dominio = "http://ver-novelas.com/qaysen/"
 function inicio()
 {
 	$('#login').on('click',comprobarLogin);
+  $('#prueba1').on('click',prueba1);
 }
 
 function iniciarFb()
@@ -50,17 +51,24 @@ function login()
     }, {scope: 'publish_actions,email, publish_stream'});
 }
 
-function verificarLogin(funcion)
+function verificarLogin(imagen)
 {
-  iniciarFb();
-    return function(){
+  window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '520023464714856', // App ID
+        channelUrl : dominio, // Channel File
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : true  // parse XFBML
+      });
+  
         FB.getLoginStatus(function(response){
             if(response.status === 'connected') 
             {
                 console.log("verificado");
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
-                funcion();
+                publicarImagen(imagen, accessToken);
             }
             else if (response.status === 'not_authorized') 
             {
@@ -71,11 +79,10 @@ function verificarLogin(funcion)
             alert("Haz click en Login");
             }
             });
-    }
+        };
 }
 
-publicarImagen = verificarLogin(publicarImagen(arguments));
-function publicarImagen(imagen)
+function publicarImagen(imagen, accessToken)
 {
 	var mensaje = 'Sube tus imagenes y compartelas en tu muro! Ingresa a Haz tu meme</a>';
   $.ajax({
@@ -86,7 +93,8 @@ function publicarImagen(imagen)
         console.log(respuesta);
         FB.api('/photos', 'post', {
           message:mensaje,
-          url:dominio+imagen.url        
+          url:dominio+imagen.url,
+          accessToken: accessToken   
         }, function(response){
 
             if (!response || response.error) {
@@ -145,4 +153,29 @@ function compartirEnMuro(imagen) {
             console.log("error");
         }
     });
+}
+
+
+function prueba1()
+{
+  alert('pasa');
+  FB.init({appId: "520023464714856", status: true, cookie: true});
+
+  FB.ui(
+  {
+    method: 'feed',
+    name: 'Loco',
+    link: 'https://ver-novelas.com/qaysen/',
+    picture: 'http://fbrell.com/f8.jpg',
+    caption: 'Reference Documentation',
+    description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+  },
+  function(response) {
+    if (response && response.post_id) {
+      alert('Post was published.');
+    } else {
+      alert('Post was not published.');
+    }
+  }
+);
 }
