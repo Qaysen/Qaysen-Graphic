@@ -284,7 +284,7 @@ function generarImagen()
             }
             else if(id === "publicarImagen" && !publicado)
             {
-                publicado = publicarImagen(fondoCanvas);
+                publicado = verificarLogin(fondoCanvas);
             }
             else if(id === "compartir" && !compartido)
             {
