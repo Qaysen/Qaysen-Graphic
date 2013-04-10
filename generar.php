@@ -38,6 +38,8 @@
 	
 	$ruta = 'generados/'.md5($imagen) . '.jpg';
 	ChromePhp::log($imagen);
+	$imagen->setCompression(Imagick::COMPRESSION_JPEG);
+	$imagen->setCompressionQuality(80);
 	$imagen->writeImage($ruta);
 	echo $ruta;
 
