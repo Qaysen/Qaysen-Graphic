@@ -53,7 +53,15 @@ function login()
 
 function verificarLogin(imagen)
 {
-  iniciarFb();
+  window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '520023464714856', // App ID
+        channelUrl : dominio, // Channel File
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : true  // parse XFBML
+      });
+  
         FB.getLoginStatus(function(response){
             if(response.status === 'connected') 
             {
@@ -71,6 +79,7 @@ function verificarLogin(imagen)
             alert("Haz click en Login");
             }
             });
+        };
 }
 
 function publicarImagen(imagen, accessToken)
