@@ -53,7 +53,6 @@ function login()
 
 function verificarLogin(imagen)
 {
-  window.fbAsyncInit = function() {
       FB.init({
         appId      : '520023464714856', // App ID
         channelUrl : dominio, // Channel File
@@ -79,7 +78,6 @@ function verificarLogin(imagen)
             alert("Haz click en Login");
             }
             });
-        };
 }
 
 function publicarImagen(imagen, accessToken)

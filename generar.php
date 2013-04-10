@@ -30,11 +30,11 @@
 				
 		$capatexto->annotateImage($draw, $capa["posx"], $capa["posy"]+$altura, 0, $capa["contenido"]);
 	}
-	$capasombra = $capatexto->clone();
-	$capasombra->setImageBackgroundColor( new ImagickPixel( 'black' ) ); 
-	$capasombra-> shadowImage( 75, 2, 0, 0);
-	$capasombra->compositeImage( $capatexto, Imagick::COMPOSITE_OVER, 3, 3 );
-	$imagen->compositeImage( $capasombra, Imagick::COMPOSITE_OVER, -3, -3 ); 
+	// $capasombra = $capatexto->clone();
+	// $capasombra->setImageBackgroundColor( new ImagickPixel( 'black' ) ); 
+	// $capasombra-> shadowImage( 75, 2, 0, 0);
+	// $capasombra->compositeImage( $capatexto, Imagick::COMPOSITE_OVER, 3, 3 );
+	$imagen->compositeImage( $capatexto, Imagick::COMPOSITE_OVER, -3, -3 ); 
 	
 	$ruta = 'generados/'.md5($imagen) . '.png';
 	ChromePhp::log($imagen);
