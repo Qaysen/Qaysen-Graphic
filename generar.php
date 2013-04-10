@@ -11,9 +11,9 @@
 	
 	$capas_texto = $canvas["capas_texto"];
 	$imagen = new Imagick("$url");
-	$capatexto = new Imagick();
-	$capatexto-> newImage($imagen->getImageWidth(),$imagen->getImageHeight(),"none");
-	$imagen->thumbnailImage(770, 0);
+	//$capatexto = new Imagick();
+	//$capatexto-> newImage($imagen->getImageWidth(),$imagen->getImageHeight(),"none");
+	//$imagen->thumbnailImage(770, 0);
 	foreach($capas_texto as $capa)
 	{
 		ChromePhp::log($capa);
@@ -28,15 +28,15 @@
 		$medidas = $imagen->queryFontMetrics($draw,$capa["contenido"]);
 		$altura = $medidas["characterHeight"]*0.82;
 				
-		$capatexto->annotateImage($draw, $capa["posx"], $capa["posy"]+$altura, 0, $capa["contenido"]);
+		$imagen->annotateImage($draw, $capa["posx"], $capa["posy"]+$altura, 0, $capa["contenido"]);
 	}
 	// $capasombra = $capatexto->clone();
 	// $capasombra->setImageBackgroundColor( new ImagickPixel( 'black' ) ); 
 	// $capasombra-> shadowImage( 75, 2, 0, 0);
 	// $capasombra->compositeImage( $capatexto, Imagick::COMPOSITE_OVER, 3, 3 );
-	$imagen->compositeImage( $capatexto, Imagick::COMPOSITE_OVER, -3, -3 ); 
+	//$imagen->compositeImage( $capatexto, Imagick::COMPOSITE_OVER, -3, -3 ); 
 	
-	$ruta = 'generados/'.md5($imagen) . '.png';
+	$ruta = 'generados/'.md5($imagen) . '.jpg';
 	ChromePhp::log($imagen);
 	$imagen->writeImage($ruta);
 	echo $ruta;
