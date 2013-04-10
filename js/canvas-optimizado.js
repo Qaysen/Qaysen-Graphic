@@ -1,10 +1,10 @@
 $(document).on('ready', inicio);
-
+canvas = $("#myCanvas");
 function inicio()
 {
-	canvas = $("#myCanvas");
+    
     fondoCanvas = {};
-	$("#explorador img").on('click', imagenFondo);
+    $("#explorador img").on('click', imagenFondo);
     $("#dibujarTexto").on("click", dibujarTexto);
     $(".genImagen").on("click", generarImagen);
     colorFondo();
@@ -12,12 +12,12 @@ function inicio()
 
 function redibujarCanvas()
 {
-	canvas.drawLayers();
+    canvas.drawLayers();
 }
 
 function colorFondo()
 {
-	canvas.addLayer({
+    canvas.addLayer({
         method: "drawImage",
         index: 0,
         name: "imagen",
@@ -59,13 +59,15 @@ function imagenFondo()
             height: altoCanvas
         };
         canvas.attr(dimensiones);
-        $("#resize").css(dimensiones);
+        //$("#resize").css(dimensiones);
 
         redibujarCanvas();
     };
     
 }
+[
 
+]
 function actualizarLista() 
 {
     var filas = "";
@@ -110,9 +112,8 @@ function actualizarLista()
             canvas.setLayer(indice,
                 {
                     fillStyle: negro,
-                    strokeStyle: "none",
-                    shadowColor: blanco,
-                    shadowBlur: 6
+                    strokeStyle: "transparent",
+                    strokeWidth: 1
                 });
         }
         else
@@ -120,7 +121,8 @@ function actualizarLista()
             canvas.setLayer(indice,
                 {
                     fillStyle: blanco,
-                    strokeStyle: negro                    
+                    strokeStyle: negro,
+                    strokeWidth: 2
                 });
         }
         redibujarCanvas();
@@ -144,14 +146,14 @@ function actualizarLista()
     $(".mas-tam").on("click",function () {
         fila = $(this).parents("tr:first");
         indice = capas.length - fila.index()-1;  
-
-        tam = canvas.getLayer(indice).scale
-        //console.log(canvas.getLayer(indice).scale);
-        tam = tam*1.2;
+        fuente = canvas.getLayer(indice).font.substring(2); 
+        tam = canvas.getLayer(indice).font.match(/\d+/g);
+        tam = parseInt(tam)+1;
         canvas.setLayer(indice,
             {
-                scale: tam
+                font: tam+fuente
             });
+        console.log(canvas.getLayer(indice));
         redibujarCanvas();
     })
 
@@ -159,12 +161,12 @@ function actualizarLista()
         fila = $(this).parents("tr:first");
         indice = capas.length - fila.index()-1;  
 
-        tam = canvas.getLayer(indice).scale
-        //console.log(canvas.getLayer(indice).scale);
-        tam = tam*0.8;
+        fuente = canvas.getLayer(indice).font.substring(2); 
+        tam = canvas.getLayer(indice).font.match(/\d+/g);
+        tam = parseInt(tam)-1;
         canvas.setLayer(indice,
             {
-                scale: tam
+                font: tam+fuente
             });
         redibujarCanvas();
     })
@@ -225,26 +227,21 @@ function dibujarTexto()
         fillStyle: "#fff",
         strokeStyle: "#000",
         strokeWidth: 2,
-        x: 20, y: 20,
+        x: 0, y: 0,
         shadowColor: "#000",
-        shadowBlur: 6,
-        font: "36pt Arial Black, sans-serif",
+        shadowBlur: 3,
+        font: "36pt Helvetica, sans-serif",
+        maxWidth: 200,
         fromCenter: false,
         background: "#000",
-        click: function(layer) {
-            capaActual = layer.index;
-            //console.log(capaActual);
-        }
+        fontSize: "36pt"
     };
 
     text = $("#texto").val();
     capas = canvas.getLayers().length;
     
     var distinto = {
-         data:{
-            contenido: text
-         },
-         text: text,
+         text: text
      };
 
     var distinto = $.extend(distinto,texto);
@@ -264,14 +261,45 @@ function generarImagen()
     var temp_dataURL = canvas.getCanvasImage("png");
     //console.log(compartido);
     var id = $(this).attr("id");
+
+    var capas = canvas.getLayers();
+
+    var post_canvas = {
+        capa_imagen:{
+        },
+        capas_texto:[]
+    };
+
+    for (i in capas)
+    {
+        capa = capas[i];
+        console.log(capa);
+        if(capa["name"] == "imagen")
+        {
+            post_canvas.capa_imagen["url"] = capa["source"].src;
+        }
+        else
+        {
+            texto = {
+                contenido: capa.text,
+                tam: parseInt(capa.font.match(/\d+/g)),
+                fill: capa.fillStyle,
+                outline: capa.strokeStyle,
+                stroke: capa.strokeWidth,
+                posx: capa.x,
+                posy: capa.y
+            };
+            post_canvas.capas_texto.push(texto);
+        }
+    }
+
+
     try{
     if(dataURL !== temp_dataURL)
     {
-        //console.log(dataURL !== temp_dataURL);
         dataURL = temp_dataURL;
-        //console.log(dataURL !== temp_dataURL);
 
-        crearImagen(temp_dataURL,function(){
+        crearImagenImagick(post_canvas,function(){
 
             if(id === "descargar")
             {
@@ -287,18 +315,29 @@ function generarImagen()
             }
         });
     }
-    else
+    else if(id === "descargar")
     {
-        if(id === "descargar")
-        {
-            window.location.href =  "download.php?path="+ imagenActual;
-        }
+        window.location.href =  "download.php?path="+ imagenActual;
     }
     }
     finally{
         redibujarCanvas();
     }
 
+}
+
+function crearImagenImagick(datos_canvas,callback){
+    $.ajax(
+    {
+        type: 'POST',
+        url: 'generar.php',
+        data: {"canvas":datos_canvas},
+        success: function(archivo){
+            //window.location.href = archivo;
+            fondoCanvas.url = archivo;
+            callback();
+        }
+    })
 }
 
 function crearImagen(url,callback) {
